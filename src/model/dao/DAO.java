@@ -7,9 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DAO {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jcbd:mysql://localhost/3306/commune";
-	String requete;
+	private String driver = "com.mysql.cj.jdbc.Driver";
+	private String url = "jdbc:mysql://localhost:3306/commune";
 	Connection connect;
 	public DAO(){
 		try{
@@ -20,10 +19,9 @@ public class DAO {
 	}
 
 
-	public void query(){
-		
+	public void query(String requete){
+		if(requete == null) throw new IllegalArgumentException("Requete null");
 		try(Statement st = connect.createStatement()){
-			
 			try{
 				Class.forName(driver);
 			}catch(ClassNotFoundException e){

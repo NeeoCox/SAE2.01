@@ -15,8 +15,8 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		DAO d = new DAO();
-		d.query();
+		d.query("SELECT * FROM Gare");
 
-		//launch(args);
+		launch(args);
 	}
 }

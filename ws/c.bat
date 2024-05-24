@@ -6,7 +6,8 @@ javac -d ../class --module-path ..\lib\javafx-sdk-22.0.1\lib --add-modules javaf
 @REM javac -d ../class `dir . -name *.java`
 REM Execution
 
-java --module-path ..\lib\javafx-sdk-22.0.1\lib --add-modules javafx.controls view.App
+java --module-path "..\lib\mysql-connector-j-8.4.0\mysql-connector-j-8.4.0.jar;..\lib\javafx-sdk-22.0.1\lib" --add-modules javafx.controls view.App
+
 @REM java --module-path javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.base TimerApp 
 @echo off
 pause
