@@ -19,12 +19,12 @@ public class Controller implements EventHandler<ActionEvent> {
 
 	public Controller(View view){
 		this._view = view;
-		_view.getExportBtn().setOnAction(this);
+		_view.getAccueil().getHeader().getExportBtn().setOnAction(this);
 	}
 
 
 	public void handle(ActionEvent e){
-		if(e.getSource() == _view.getExportBtn()){
+		if(e.getSource() == _view.getAccueil().getHeader().getExportBtn()){
 			System.out.println("export");
 			// this.export();
 		} 
@@ -32,6 +32,10 @@ public class Controller implements EventHandler<ActionEvent> {
 
 
 
+	/**
+	 * Exporte la base en .csv
+	 * @param fileName nom du fichier à exporter
+	 */
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
 			// TODO 

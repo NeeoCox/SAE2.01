@@ -8,15 +8,19 @@ import javafx.stage.Stage;
 public class App extends Application {
 	public void start(Stage stage){
 		View _view = new View();
+		
 		Controller _controller = new Controller(_view);
+		/*
+		DAO d = new DAO();
+		d.query("SELECT * FROM Gare");
+		*/
 
 		_view.show();
 	}
 
 	public static void main(String[] args) {
-		DAO d = new DAO();
-		d.query("SELECT * FROM Gare");
-
 		launch(args);
+
+		
 	}
 }

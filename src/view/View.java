@@ -1,4 +1,5 @@
 package view;
+import controller.Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -9,26 +10,28 @@ import javafx.geometry.*;
 public class View extends Stage {
 
 	private Scene scene;
-	private Button exportBtn;
+
 	private GridPane pane;
+	private Accueil accueil;
+
 
 	public View(){
 		this.init();
-		pane.setAlignment(Pos.CENTER);
-		pane.add(exportBtn,0,0);
+		/*pane.setAlignment(Pos.CENTER);
+		pane.add(exportBtn,0,0);*/
 
-		scene = new Scene(pane,250,250);
+		scene = new Scene(accueil,250,250);
 		setScene(scene);
 
 	}
 
 	private void init(){
-		exportBtn = new Button("export");
 		pane = new GridPane();
+		accueil = new Accueil();
 	}
 	
-
-	public Button getExportBtn() {
-		return exportBtn;
+	public Accueil getAccueil() {
+		return accueil;
 	}
+
 }

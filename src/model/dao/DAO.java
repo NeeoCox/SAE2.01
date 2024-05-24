@@ -30,7 +30,7 @@ public class DAO {
 			
 			ResultSet rs = st.executeQuery(requete);
 			while (rs.next()) {
-				System.out.println(rs.getInt("codeGare"));
+				// System.out.println(rs);
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
