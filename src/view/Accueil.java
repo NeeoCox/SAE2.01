@@ -10,10 +10,13 @@ import javafx.scene.layout.GridPane;
 
 public class Accueil extends BorderPane {
 
-	Header header;
+	private Header header;
+	private Menu menu;
 	public Accueil(){
 		header = new Header();
+		menu = new Menu();
 		this.setTop(header);
+		// this.setRight(menu);
 	}
 
 	public Header getHeader() {
@@ -35,11 +38,14 @@ public class Accueil extends BorderPane {
 		public Header(){
 			//image = new Image(getClass().getResourceAsStream("../img/pikmin.png"));
 			//imageView.setImage(image);
-			exportBtn = new Button("Exporter en .csv");
+			exportBtn = new Button("Exporter");
 			searchBar = new TextField();
 			searchBtn = new Button("Search");
 			loginBtn = new Button("Login");
-			this.getChildren().addAll(exportBtn,searchBar,searchBtn);
+			this.add(exportBtn,1,0);
+			this.add(searchBar,2,0);
+			this.add(searchBtn,3,0);
+			this.add(loginBtn,4,0);
 
 
 
