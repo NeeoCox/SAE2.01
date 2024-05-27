@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
 public class Accueil extends BorderPane {
 
@@ -44,27 +45,27 @@ public class Accueil extends BorderPane {
 			paneBar = new GridPane();
 			paneBar.setAlignment(Pos.CENTER);
 			paneBar.setHgap(5);
-			/*String nomImg = "C:/Users/Administrateur/Desktop/Dossier_avec_tout/BUTnfo/SAE/Gros_SAE/Java/img/pikmin.png";
 			imageView = new ImageView();
 
 			try{
-				image = new Image(nomImg);
+				image = new Image("C:/Users/Administrateur/Desktop/Dossier_avec_tout/BUTnfo/SAE/Gros_SAE/Java/src/view/img/pikmin.png");
 				imageView.setImage(image);
 			}
 			catch(Exception e){
 				System.out.println(" Erreur lors du chargement " + e.getMessage());
-			}*/
-			
+			}
+
+			this.add(imageView,0,0);
 
 			exportBtn = new Button("Exporter");
 			searchBar = new TextField();
 			searchBtn = new Button("Search");
 			loginBtn = new Button("Login");
 
-			this.add(exportBtn,1,0);
-			this.add(searchBar,2,0);
-			this.add(searchBtn,3,0);
-			this.add(loginBtn,4,0);
+			this.add(exportBtn,1,1);
+			this.add(searchBar,2,1);
+			this.add(searchBtn,3,1);
+			this.add(loginBtn,4,1);
 
 			
 
