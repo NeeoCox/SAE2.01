@@ -36,8 +36,18 @@ public class Accueil extends BorderPane {
 		private Image image;
 
 		public Header(){
-			//image = new Image(getClass().getResourceAsStream("../img/pikmin.png"));
-			//imageView.setImage(image);
+			/*String nomImg = "C:/Users/Administrateur/Desktop/Dossier_avec_tout/BUTnfo/SAE/Gros_SAE/Java/img/pikmin.png";
+			imageView = new ImageView();
+
+			try{
+				image = new Image(nomImg);
+				imageView.setImage(image);
+			}
+			catch(Exception e){
+				System.out.println(" Erreur lors du chargement " + e.getMessage());
+			}*/
+			
+
 			exportBtn = new Button("Exporter");
 			searchBar = new TextField();
 			searchBtn = new Button("Search");
