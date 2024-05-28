@@ -45,17 +45,9 @@ public class Accueil extends BorderPane {
 			paneBar = new GridPane();
 			paneBar.setAlignment(Pos.CENTER);
 			paneBar.setHgap(5);
-			imageView = new ImageView();
+			imageView = new ImageView(new Image("file:../ressources/img/pikmin.png"));
 
-			try{
-				image = new Image("C:/Users/Administrateur/Desktop/Dossier_avec_tout/BUTnfo/SAE/Gros_SAE/Java/src/view/img/pikmin.png");
-				imageView.setImage(image);
-			}
-			catch(Exception e){
-				System.out.println(" Erreur lors du chargement " + e.getMessage());
-			}
-
-			this.add(imageView,0,0);
+			this.add(imageView,1,0);
 
 			exportBtn = new Button("Exporter");
 			searchBar = new TextField();
