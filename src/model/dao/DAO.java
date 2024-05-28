@@ -59,7 +59,7 @@ public class DAO {
 	}
 
 	/**
-	 * Converti une ArrayList de String qui représente des Boolean mySQL en boolean java
+	 * Converti une ArrayList de String qui représente des BOOLEAN mySQL en boolean java
 	 * @param ARofBooleanAsString l'ArrayList de String
 	 * @return une ArrayList de Boolean
 	 */
@@ -73,6 +73,11 @@ public class DAO {
 		return result;
 	}
 
+	/**
+	 * Converti une ArrayList de String qui représente des INT mySQL en Integer java
+	 * @param ARofIntegerAsString l'ArrayList de String
+	 * @return une ArrayList de Integer
+	 */
 	public ArrayList<Integer> toInteger(ArrayList<String> ARofIntegerAsString){
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (String s : ARofIntegerAsString) {
@@ -86,7 +91,11 @@ public class DAO {
 		return result;
 	}
 
-
+	/**
+	 * Converti une ArrayList de String qui représente des FLOAT mySQL en Float java
+	 * @param ARofFloatAsString l'ArrayList de String
+	 * @return une ArrayList de Float
+	 */
 	public ArrayList<Float> toFloat(ArrayList<String> ARofFloatAsString){
 		ArrayList<Float> result = new ArrayList<Float>();
 		for (String s : ARofFloatAsString) {

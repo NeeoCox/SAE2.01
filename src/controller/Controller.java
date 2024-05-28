@@ -43,8 +43,7 @@ public class Controller implements EventHandler<ActionEvent> {
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
 			
-			// out.println(_dao.query("SELECT * FROM Gare"));
-
+		
 			
         } catch (IOException e) {
             e.printStackTrace();
