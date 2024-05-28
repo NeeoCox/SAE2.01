@@ -1,11 +1,10 @@
 package view;
 import controller.*;
-import model.dao.*;
+import controller.model.dao.*;
+import controller.model.data.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import model.data.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

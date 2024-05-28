@@ -1,6 +1,7 @@
-package model.data;
-import model.dao.CommuneDAO;
+package controller.model.data;
 import java.util.ArrayList;
+
+import controller.model.dao.CommuneDAO;
 
 /**
  * Commune
