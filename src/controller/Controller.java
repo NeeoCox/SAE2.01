@@ -1,4 +1,5 @@
 package controller;
+import model.dao.DAO;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import view.*;
 public class Controller implements EventHandler<ActionEvent> {
 
 	private View _view;
+	private DAO _dao;
 
 	public Controller(View view){
 		this._view = view;
@@ -28,6 +30,8 @@ public class Controller implements EventHandler<ActionEvent> {
 			System.out.println("export");
 			// this.export();
 		} 
+
+
 	}
 
 
@@ -38,7 +42,9 @@ public class Controller implements EventHandler<ActionEvent> {
 	 */
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
-			// TODO 
+			
+		
+			
         } catch (IOException e) {
             e.printStackTrace();
         }
