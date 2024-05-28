@@ -14,13 +14,13 @@
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
           <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="exporter" />
-            <TextField prefHeight="25.0" prefWidth="386.0" text="nom de la ville a chercher " />
+            <TextField prefHeight="25.0" prefWidth="386.0" promptText="Ville a rechercher" />
             <Button mnemonicParsing="false" text="recherche" />
             <Button mnemonicParsing="false" text="Connexion" />
         </items>
       </ToolBar>
       <BorderPane />
-      <ToolBar prefHeight="331.0" prefWidth="640.0">
+      <ToolBar>
          <items>
             <SplitPane prefHeight="355.0" prefWidth="87.0">
                <items>
@@ -36,7 +36,7 @@
                   </SplitPane>
                </items>
             </SplitPane>
-            <FlowPane prefHeight="355.0" prefWidth="532.0">
+            <FlowPane alignment="CENTER" prefHeight="355.0" prefWidth="532.0">
                <children>
                   <SplitPane prefHeight="352.0" prefWidth="273.0" />
                   <SplitPane prefHeight="352.0" prefWidth="258.0" />
