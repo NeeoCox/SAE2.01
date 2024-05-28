@@ -1,4 +1,4 @@
-package controller.model.dao;
+package model.dao;
 
 import java.sql.Statement;
 import java.util.ArrayList;
