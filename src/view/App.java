@@ -11,7 +11,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            URL fxmlLocation = new URL("file:../ressources/BasicApplication_css.fxml");
+            URL fxmlLocation = new URL("file:../ressources/Acceuil.fxml");
             Parent root = FXMLLoader.load(fxmlLocation);
             stage.setTitle("SAE commune bretonne");
             stage.setScene(new Scene(root));
