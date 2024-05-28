@@ -1,7 +1,6 @@
 package model.data;
-import model.dao.DAO;
+import model.dao.CommuneDAO;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Commune
@@ -13,8 +12,7 @@ public class Commune {
 	private String nomCommune;
 	private ArrayList<Commune> listeVoisine;
 	private ArrayList<Gare> listeGare;
-	private DAO dao;
-	private HashMap<Integer, Integer> communeParAnnee;
+	private CommuneDAO dao;
 
 	public Commune(int idCommune, String nomCommune){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
@@ -24,8 +22,7 @@ public class Commune {
 		this.nomCommune = nomCommune;
 		this.listeGare = new ArrayList<Gare>();
 		this.listeVoisine = new ArrayList<Commune>();
-		this.dao = new DAO();
-		this.communeParAnnee = new HashMap<Integer, Integer>();
+		this.dao = new CommuneDAO();
 	}
 
 	public Commune(int idCommune, String nomCommune,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
@@ -72,6 +69,28 @@ public class Commune {
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		this.nomCommune = nomCommune;
 	}
+	public boolean checkAnnee(int annee){
+		boolean ret = false;
+		String idCommuneS = "" + this.idCommune;
+		ArrayList<Integer> a = dao.setAnnee(idCommuneS);
+		for (Integer integer : a) {
+			if (integer == annee) {
+				ret = true;
+			}
+		}
+		return ret;
 
-
+	}
+	public boolean estVoisine(Commune commu){
+		boolean ret = false;
+		if (commu != null) {
+			for (Commune commune : this.listeVoisine) {
+				if (commune.equals(commu)) {
+					ret = true;
+				}
+			}
+		}
+		return ret;
+	}
+	
 }

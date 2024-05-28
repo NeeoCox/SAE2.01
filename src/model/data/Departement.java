@@ -10,19 +10,18 @@ public class Departement {
 	private float invesCulturel2019;
 	private ArrayList<Commune> listeCommunes;
 	private ArrayList<Aeroport> listeAeroport;
-	private HashMap<Integer, Integer> communeParAnnee;
 	
 	public Departement(int id,String nom,float inves){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
 		if(id < 0) throw new IllegalArgumentException("ID negatif");
 		if(nom == null) throw new IllegalArgumentException("Nom null");
 		if(nom.length() == 0) throw new IllegalArgumentException("Nom inexistant");
+		if(nom != nom.toUpperCase()) throw new IllegalArgumentException("Le nom doit etre en majuscule");
 		this.idDep = id;
 		this.nomDep = nom;
 		this.invesCulturel2019 = inves;
 		this.listeCommunes = new ArrayList<Commune>();
 		this.listeAeroport = new ArrayList<Aeroport>();
-		this.communeParAnnee = new HashMap<Integer, Integer>();
 	}
 
 	public Departement(int id,String nom,float inves,ArrayList<Commune> listeCommunes,ArrayList<Aeroport> listeAeroport){
@@ -32,6 +31,7 @@ public class Departement {
 		if(nom.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		if(listeCommunes == null) throw new IllegalArgumentException("Liste Commune null");
 		if(listeAeroport== null) throw new IllegalArgumentException("Liste Aeroport null");
+		if(nom != nom.toUpperCase()) throw new IllegalArgumentException("Le nom doit etre en majuscule");
 		this.idDep = id;
 		this.nomDep = nom;
 		this.invesCulturel2019 = inves;
@@ -79,14 +79,5 @@ public class Departement {
 
 	public ArrayList<Aeroport> getListeAeroport() {
 		return listeAeroport;
-	}
-
-	public HashMap<Integer, Integer> setMap(int annee, int idCommune){
-		boolean notExist = true;
-		HashMap<Integer, Integer> ret = new HashMap<>();
-		for (Commune commune : listeCommunes) {
-			
-		}
-		
 	}
 }

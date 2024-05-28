@@ -33,5 +33,13 @@ public class Aeroport {
         }
     }
 
-    
+    public String emplacementAeroport(Departement d){
+        String ret = "";
+        for (Aeroport aeroport : d.getListeAeroport()) {
+            if (aeroport.getNom().equals(this.nom)) {
+                ret = ret + d.getNomDep() + "a un aeroport";
+            }
+        }
+        return ret;
+    }
 }
