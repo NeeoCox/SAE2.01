@@ -55,7 +55,6 @@ public abstract class DAO<T> {
 		
 	}
 
-	public abstract ArrayList<T> findAll();
 
 	/**
 	 * Converti une ArrayList de String qui représente des BOOLEAN mySQL en boolean java

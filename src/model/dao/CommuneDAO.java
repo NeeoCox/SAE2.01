@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import model.data.Gare;
 import model.data.Commune;
 
 
@@ -42,6 +43,44 @@ public class CommuneDAO extends DAO<Commune> {
 		return result;
 	}
 
+	public ArrayList<Integer> setAnnee(int id){
+		return setAnnee(String.valueOf(id));
+	}
+
+	public ArrayList<Commune> voisine(String id){
+		ArrayList<Commune> result = new ArrayList<Commune>();
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM voisinage JOIN Commune ON communeVoisine = idCommune WHERE commune= ?  ")){
+			st.setString(1, id);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				result.add(new Commune(rs.getInt("communeVoisine"),rs.getString("nomCommune")));
+			}
+		}catch(SQLException e){
+
+		}
+		return result;
+	}
+	public ArrayList<Integer> voisine(int id){
+		return setAnnee(String.valueOf(id));
+	}
 
 	
+	public ArrayList<Gare> gare(String id){
+		ArrayList<Gare> result = new ArrayList<Gare>();
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM Gare WHERE laCommune= ? ")){
+			st.setString(1, id);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				result.add(new Gare(rs.getInt("codeGare"),rs.getString("nomGare"),rs.getBoolean("estFret"),rs.getBoolean("estVoyageur")));
+			}
+		}catch(SQLException e){
+
+		}
+		return result;
+	}
+
+	public ArrayList<Gare> gare(int id){
+		return gare(String.valueOf(id));
+	}
+
 }
