@@ -1,4 +1,4 @@
-package view.model.data;
+package model.data;
 
 /**
  * Gare
