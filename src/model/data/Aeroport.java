@@ -1,4 +1,4 @@
-package model.data;
+package controller.model.data;
 
 
 public class Aeroport {

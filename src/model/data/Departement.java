@@ -1,4 +1,4 @@
-package model.data;
+package controller.model.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
