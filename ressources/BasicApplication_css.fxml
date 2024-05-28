@@ -11,18 +11,27 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-      <ToolBar prefHeight="191.0" prefWidth="798.0">
+      <ToolBar prefHeight="60.0" prefWidth="798.0">
         <items>
-          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="exporter" />
-            <TextField prefHeight="25.0" prefWidth="386.0" promptText="Ville a rechercher" />
-            <Button mnemonicParsing="false" text="recherche" />
-            <Button mnemonicParsing="false" text="Connexion" />
+            <StackPane prefHeight="3.0" prefWidth="93.0">
+               <children>
+                  <ImageView fitHeight="55.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/1200px-Région-bretagne-logo.svg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+          <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" text="exporter" />
+            <TextField prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
+            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="68.0" text="recherche" />
+            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
         </items>
       </ToolBar>
       <BorderPane />
-      <ToolBar>
+      <ToolBar prefHeight="306.0" prefWidth="798.0">
          <items>
             <SplitPane prefHeight="355.0" prefWidth="87.0">
                <items>
@@ -41,23 +50,7 @@
                   </SplitPane>
                </items>
             </SplitPane>
-            <FlowPane alignment="CENTER" prefHeight="355.0" prefWidth="532.0">
-               <children>
-                  <StackPane alignment="BASELINE_LEFT" prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="213.0" fitWidth="316.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/pikmin.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </ImageView>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                     </children>
-                  </StackPane>
-               </children>
-            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="355.0" prefWidth="532.0" />
          </items>
       </ToolBar>
   </children>
