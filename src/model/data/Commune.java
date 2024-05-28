@@ -1,6 +1,7 @@
-package view.model.data;
-
+package model.data;
+import model.dao.DAO;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Commune
@@ -12,6 +13,8 @@ public class Commune {
 	private String nomCommune;
 	private ArrayList<Commune> listeVoisine;
 	private ArrayList<Gare> listeGare;
+	private DAO dao;
+	private HashMap<Integer, Integer> communeParAnnee;
 
 	public Commune(int idCommune, String nomCommune){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
@@ -21,6 +24,8 @@ public class Commune {
 		this.nomCommune = nomCommune;
 		this.listeGare = new ArrayList<Gare>();
 		this.listeVoisine = new ArrayList<Commune>();
+		this.dao = new DAO();
+		this.communeParAnnee = new HashMap<Integer, Integer>();
 	}
 
 	public Commune(int idCommune, String nomCommune,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
@@ -67,5 +72,6 @@ public class Commune {
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		this.nomCommune = nomCommune;
 	}
+
 
 }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class DAO {
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/commune";
+	private String url = "jdbc:mysql://localhost:3306/bdsae";
 	Connection connect;
 	public DAO(){
 		try{

@@ -1,6 +1,8 @@
-package view.model.data;
+package model.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Departement {
 	private int idDep;
@@ -8,6 +10,7 @@ public class Departement {
 	private float invesCulturel2019;
 	private ArrayList<Commune> listeCommunes;
 	private ArrayList<Aeroport> listeAeroport;
+	private HashMap<Integer, Integer> communeParAnnee;
 	
 	public Departement(int id,String nom,float inves){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
@@ -19,6 +22,7 @@ public class Departement {
 		this.invesCulturel2019 = inves;
 		this.listeCommunes = new ArrayList<Commune>();
 		this.listeAeroport = new ArrayList<Aeroport>();
+		this.communeParAnnee = new HashMap<Integer, Integer>();
 	}
 
 	public Departement(int id,String nom,float inves,ArrayList<Commune> listeCommunes,ArrayList<Aeroport> listeAeroport){
@@ -75,5 +79,14 @@ public class Departement {
 
 	public ArrayList<Aeroport> getListeAeroport() {
 		return listeAeroport;
+	}
+
+	public HashMap<Integer, Integer> setMap(int annee, int idCommune){
+		boolean notExist = true;
+		HashMap<Integer, Integer> ret = new HashMap<>();
+		for (Commune commune : listeCommunes) {
+			
+		}
+		
 	}
 }
