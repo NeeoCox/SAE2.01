@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+      <ToolBar prefHeight="191.0" prefWidth="798.0">
+        <items>
+          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="exporter" />
+            <TextField prefHeight="25.0" prefWidth="386.0" promptText="Ville a rechercher" />
+            <Button mnemonicParsing="false" text="recherche" />
+            <Button mnemonicParsing="false" text="Connexion" />
+        </items>
+      </ToolBar>
+      <BorderPane />
+      <ToolBar>
+         <items>
+            <SplitPane prefHeight="355.0" prefWidth="87.0">
+               <items>
+                  <SplitPane dividerPositions="0.8356940509915014" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="85.0">
+                           <children>
+                              <Button layoutX="-2.0" mnemonicParsing="false" prefHeight="292.0" prefWidth="95.0" text="Menu" />
+                           </children></AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button layoutX="-5.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" text="Contact" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </items>
+            </SplitPane>
+            <FlowPane alignment="CENTER" prefHeight="355.0" prefWidth="532.0">
+               <children>
+                  <StackPane alignment="BASELINE_LEFT" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="213.0" fitWidth="316.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/pikmin.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </ImageView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </StackPane>
+               </children>
+            </FlowPane>
+         </items>
+      </ToolBar>
+  </children>
+  <stylesheets>
+    <URL value="@BasicApplication.css" />
+  </stylesheets>
+</VBox>
