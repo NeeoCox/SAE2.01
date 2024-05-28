@@ -11,7 +11,7 @@ import java.sql.Types;
 
 public abstract class DAO<T> {
 	private static String driver = "com.mysql.cj.jdbc.Driver";
-	private static String url="jdbc:mysql://localhost:3306/commune";
+	private static String url="jdbc:mysql://localhost:3306/basae";
 	Connection connect;
 
 

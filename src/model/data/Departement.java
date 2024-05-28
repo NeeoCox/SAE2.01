@@ -1,6 +1,8 @@
 package model.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Departement {
 	private int idDep;
@@ -14,6 +16,7 @@ public class Departement {
 		if(id < 0) throw new IllegalArgumentException("ID negatif");
 		if(nom == null) throw new IllegalArgumentException("Nom null");
 		if(nom.length() == 0) throw new IllegalArgumentException("Nom inexistant");
+		if(nom != nom.toUpperCase()) throw new IllegalArgumentException("Le nom doit etre en majuscule");
 		this.idDep = id;
 		this.nomDep = nom;
 		this.invesCulturel2019 = inves;
@@ -28,6 +31,7 @@ public class Departement {
 		if(nom.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		if(listeCommunes == null) throw new IllegalArgumentException("Liste Commune null");
 		if(listeAeroport== null) throw new IllegalArgumentException("Liste Aeroport null");
+		if(nom != nom.toUpperCase()) throw new IllegalArgumentException("Le nom doit etre en majuscule");
 		this.idDep = id;
 		this.nomDep = nom;
 		this.invesCulturel2019 = inves;
