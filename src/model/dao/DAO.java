@@ -9,24 +9,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-public class DAO {
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url;
+public abstract class DAO<T> {
+	private static String driver = "com.mysql.cj.jdbc.Driver";
+	private static String url="jdbc:mysql://localhost:3306/commune";
 	Connection connect;
 
-	/**
-	 * Initialise une nouvelle connection vers la base de donnee
-	 * @param url l'url de la base
-	 */
-	public DAO(String url){
-		this.url = url;
+
+	Connection createConnection() throws SQLException{
 		try{
-			connect = DriverManager.getConnection(this.url, "root", "root");
-		}catch(SQLException e){
+			Class.forName(driver);
+		}catch(ClassNotFoundException e){
 			e.printStackTrace();
 		}
-	}
 
+		return DriverManager.getConnection(this.url, "root", "root");
+	}
 
 	/**
 	 * Demande une requete depuis la base
@@ -57,6 +54,8 @@ public class DAO {
 		return a;
 		
 	}
+
+	public abstract ArrayList<T> findAll();
 
 	/**
 	 * Converti une ArrayList de String qui représente des BOOLEAN mySQL en boolean java
