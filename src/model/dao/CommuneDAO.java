@@ -14,12 +14,14 @@ public class CommuneDAO extends DAO<Commune> {
 
 
 
-	public ArrayList<Commune> findAll(){
+	public ArrayList<Commune> find(String nomVille){
 		ArrayList<Commune> result = new ArrayList<Commune>();
-		try(Connection connect = createConnection(); Statement st = connect.createStatement()){
-			ResultSet rs = st.executeQuery("SELECT * FROM commune");
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM commune WHERE nomCommune = ?")){
+			st.setString(1, nomVille);
+			ResultSet rs = st.executeQuery();
 			while(rs.next()){
 				int id = rs.getInt("idCommune");
+				System.out.println(rs.getString("nomCommune"));
 				String nom = rs.getString("nomCommune");
 				result.add(new Commune(id, nom));
 			}

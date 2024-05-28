@@ -4,8 +4,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.dao.CommuneDAO;
+
 import java.io.IOException;
 import java.net.URL;
+
+import controller.Controller;
 
 public class App extends Application {
     @Override
@@ -24,6 +28,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        // CommuneDAO c = new CommuneDAO();
+        // c.findAll("");
         launch(args);
     }
 }

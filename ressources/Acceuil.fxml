@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
   <children>
       <ToolBar prefHeight="60.0" prefWidth="798.0">
         <items>
@@ -24,10 +24,10 @@
                   </ImageView>
                </children>
             </StackPane>
-          <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" text="exporter" />
-            <TextField prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="68.0" text="recherche" />
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
+          <Button fx:id="exporter" mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="34.0" prefWidth="85.0" text="exporter" />
+            <TextField fx:id="villeAChercher" prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
+            <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" prefWidth="68.0" text="recherche" />
+            <Button fx:id="connexion" mnemonicParsing="false" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
         </items>
       </ToolBar>
       <BorderPane />

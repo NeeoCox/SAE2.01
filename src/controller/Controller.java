@@ -3,38 +3,46 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
 
-import model.dao.DAO;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.scene.control.TextField;
+import model.dao.CommuneDAO;
+import model.data.Commune;
 import view.*;
 /**
  * Controller
  */
-public class Controller implements EventHandler<ActionEvent> {
+public class Controller {
 
-	private View _view;
-	private DAO _dao;
+	@FXML
+	private Button exporter;
+	@FXML
+	TextField villeAChercher;
+	@FXML
+	Button recherche;
+	@FXML
+	Button connexion;
 
-	public Controller(View view){
-		this._view = view;
-		_view.getAccueil().getHeader().getExportBtn().setOnAction(this);
+	CommuneDAO _c;
+
+	public Controller(){
+		_c = new CommuneDAO();
+	}
+
+	public void handleSubmitButtonAction(ActionEvent e){
+		System.out.println("exporter");
 	}
 
 
-	public void handle(ActionEvent e){
-		if(e.getSource() == _view.getAccueil().getHeader().getExportBtn()){
-			System.out.println("export");
-			// this.export();
-		} 
-
-
+	public void recherche(ActionEvent e){
+		System.out.println("ok");
+		if(villeAChercher == null ||villeAChercher.getText().length() == 0) throw new IllegalArgumentException("Bar de recherche vide");
+		ArrayList<Commune> a = _c.find(villeAChercher.getText().toUpperCase());
+		System.out.println(a.size());
 	}
-
 
 
 	/**
@@ -53,16 +61,12 @@ public class Controller implements EventHandler<ActionEvent> {
 
 
 /* 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class PleaseProvideControllerClassName {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+    
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
