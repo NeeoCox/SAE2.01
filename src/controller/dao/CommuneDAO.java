@@ -1,13 +1,11 @@
-package controller.model.dao;
+package controller.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import controller.model.data.Commune;
-import controller.model.data.Gare;
+import model.data.*;
 
 
 public class CommuneDAO extends DAO<Commune> {
