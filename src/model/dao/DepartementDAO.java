@@ -40,7 +40,7 @@ public class DepartementDAO extends DAO<Departement> {
 		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM aeroport WHERE leDepartement = ? ")){
 			ResultSet rs = st.executeQuery();
 			while(rs.next()){
-				result.add(new Aeroport());
+				// result.add(new Aeroport());
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
