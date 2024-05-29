@@ -5,24 +5,25 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="383.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="383.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <right>
       <AnchorPane prefHeight="389.0" prefWidth="242.0" style="-fx-background-color: #8eb9c5;" BorderPane.alignment="CENTER">
          <children>
             <StackPane layoutX="-7.0" layoutY="130.0" prefHeight="34.0" prefWidth="229.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="27.0" prefWidth="228.0" />
+                  <TextField alignment="CENTER" fx:id="mail" prefHeight="27.0" prefWidth="228.0" />
                </children>
             </StackPane>
             <StackPane layoutX="-6.0" layoutY="192.0" prefHeight="35.0" prefWidth="226.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="25.0" prefWidth="225.0" />
+                  <PasswordField alignment="CENTER" fx:id="mdp" prefHeight="25.0" prefWidth="225.0" />
                </children>
             </StackPane>
             <Label layoutX="6.0" layoutY="102.0" prefHeight="28.0" prefWidth="131.0" text="Adresse électronique" />
             <Label layoutX="6.0" layoutY="175.0" text="Mot de passe" />
-            <Button layoutX="79.0" layoutY="243.0" mnemonicParsing="false" text="Se connecter" />
+            <Button layoutX="79.0" layoutY="243.0" onAction="#connecter" mnemonicParsing="false" text="Se connecter" />
+            <!-- a mettre à la bonne hauteur -->
+            <Label fx:id="labelIncorrect" layoutX="6.0" layoutY="300.0" prefHeight="28.0" prefWidth="131.0" text="" />
             <Separator layoutX="21.0" layoutY="283.0" prefWidth="200.0" />
             <Button layoutX="69.0" layoutY="303.0" mnemonicParsing="false" text="Créer un compte" />
          </children>
