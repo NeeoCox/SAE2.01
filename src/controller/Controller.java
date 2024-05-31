@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.dao.CommuneDAO;
 import model.data.Commune;
-import view.*;
+import model.dao.DAO;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
 /**
@@ -63,7 +63,7 @@ public class Controller {
 		Scene scene =null;
 		try {
 			Parent root = FXMLLoader.load(new URL("file:../ressources/Login.fxml"));
-			scene= new Scene(root , 600, 500);
+			scene= new Scene(root);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}		
@@ -72,14 +72,22 @@ public class Controller {
 
 	}
 
-	public void connecter(ActionEvent e){
+	public void connecter(ActionEvent ev){
 		//todo avoir des gens pour ce co
-		if(!mail.getText().equals("admin") || !mdp.getText().equals("admin")) {
-			labelIncorrect.setTextFill(Color.rgb(255, 0, 0));
-			labelIncorrect.setText("identifiant ou mot de passe invalide");
-			System.out.println("pas ok");
+		labelIncorrect.setTextFill(Color.rgb(255, 0, 0));
+		DAO.setUsername(mail.getText());
+		DAO.setPwd(mdp.getText());
+		Scene scene = null;
+		try{
+			Parent root = FXMLLoader.load(new URL("file:../ressources/Acceuil.fxml"));
+			scene = new Scene(root);
+		}catch(IOException ex){
+			ex.printStackTrace();
+			labelIncorrect.setText("problème de connection");
 		}
-		else System.out.println("ok");
+		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		System.out.println("ok");
 		System.out.println(mail.getText());
 		System.out.println(mdp.getText());
 	}
@@ -87,7 +95,7 @@ public class Controller {
 
 	/**
 	 * Exporte la base en .csv
-	 * @param fileName nom du fichier à exporter
+	 * @param fileName nom du fichier à exporte
 	 */
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
@@ -99,19 +107,4 @@ public class Controller {
         }
 	}
 
-
-/* 
-
-public class PleaseProvideControllerClassName {
-
-    
-
-
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-
-    }
-}
- */
 }

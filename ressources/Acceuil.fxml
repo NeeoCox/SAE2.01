@@ -27,7 +27,7 @@
           <Button fx:id="exporter" mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="34.0" prefWidth="85.0" text="exporter" />
             <TextField fx:id="villeAChercher" prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
             <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" prefWidth="68.0" text="recherche" />
-            <Button fx:id="connexion" mnemonicParsing="false" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
+            <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
         </items>
       </ToolBar>
       <BorderPane />
