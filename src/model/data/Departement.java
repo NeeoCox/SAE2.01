@@ -87,8 +87,10 @@ public class Departement {
 
 	public boolean compareInvessTo(Departement d){
 		boolean ret = false;
-		if(d.getInvesCulturel2019() == this.invesCulturel2019){
-			ret = true;
+		if (d != null) {
+			if(d.getInvesCulturel2019() == this.invesCulturel2019){
+				ret = true;
+			}
 		}
 		return ret;
 	}
