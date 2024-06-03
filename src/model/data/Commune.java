@@ -13,7 +13,7 @@ public class Commune {
 	private String nomCommune;
 	private ArrayList<Commune> listeVoisine;
 	private ArrayList<Gare> listeGare;
-	private CommuneDAO dao;
+	private CommuneDAO c;
 
 	public Commune(int idCommune, String nomCommune){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
@@ -23,7 +23,6 @@ public class Commune {
 		this.nomCommune = nomCommune;
 		this.listeGare = new ArrayList<Gare>();
 		this.listeVoisine = new ArrayList<Commune>();
-		this.dao = new CommuneDAO();
 	}
 
 	public Commune(int idCommune, String nomCommune,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
@@ -73,7 +72,7 @@ public class Commune {
 	public boolean checkAnnee(int annee){
 		boolean ret = false;
 		String idCommuneS = "" + this.idCommune;
-		ArrayList<Integer> a = dao.setAnnee(idCommuneS);
+		ArrayList<Integer> a = c.setAnnee(idCommuneS);
 		for (Integer integer : a) {
 			if (integer == annee) {
 				ret = true;

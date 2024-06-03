@@ -37,7 +37,7 @@ public class Aeroport {
         String ret = "";
         for (Aeroport aeroport : d.getListeAeroport()) {
             if (aeroport.getNom().equals(this.nom)) {
-                ret = ret + d.getNomDep() + "a un aeroport";
+                ret = ret + "L'aeroport est dans le departement : " + d.getNomDep();
             }
         }
         return ret;

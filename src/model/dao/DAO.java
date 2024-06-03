@@ -1,13 +1,9 @@
 package model.dao;
 
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 
 public abstract class DAO<T> {
 	private static String driver = "com.mysql.cj.jdbc.Driver";

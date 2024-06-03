@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import model.dao.DepartementDAO;
+
 public class Departement {
 	private int idDep;
 	private String nomDep;
 	private float invesCulturel2019;
 	private ArrayList<Commune> listeCommunes;
 	private ArrayList<Aeroport> listeAeroport;
+	private DepartementDAO dao;
 	
 	public Departement(int id,String nom,float inves){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
@@ -24,7 +27,7 @@ public class Departement {
 		this.listeAeroport = new ArrayList<Aeroport>();
 	}
 
-	public Departement(int id,String nom,float inves,ArrayList<Commune> listeCommunes,ArrayList<Aeroport> listeAeroport){
+	public Departement(int id,String nom,float inves,String idDep){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
 		if(id < 0) throw new IllegalArgumentException("ID negatif");
 		if(nom == null) throw new IllegalArgumentException("Nom null");
@@ -35,8 +38,9 @@ public class Departement {
 		this.idDep = id;
 		this.nomDep = nom;
 		this.invesCulturel2019 = inves;
-		this.listeCommunes = listeCommunes;
-		this.listeAeroport = listeAeroport;
+		this.dao = new DepartementDAO();
+		this.listeCommunes = this.dao.listeCommunes(idDep);
+		this.listeAeroport = this.dao.listeAeroport(idDep);
 	}
 
 	public int getIdDep() {
@@ -79,5 +83,13 @@ public class Departement {
 
 	public ArrayList<Aeroport> getListeAeroport() {
 		return listeAeroport;
+	}
+
+	public boolean compareInvessTo(Departement d){
+		boolean ret = false;
+		if(d.getInvesCulturel2019() == this.invesCulturel2019){
+			ret = true;
+		}
+		return ret;
 	}
 }
