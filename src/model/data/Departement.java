@@ -84,4 +84,12 @@ public class Departement {
 	public ArrayList<Aeroport> getListeAeroport() {
 		return listeAeroport;
 	}
+
+	public boolean compareInvessTo(Departement d){
+		boolean ret = false;
+		if(d.getInvesCulturel2019() == this.invesCulturel2019){
+			ret = true;
+		}
+		return ret;
+	}
 }

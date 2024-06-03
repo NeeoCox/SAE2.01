@@ -1,8 +1,8 @@
-package controller.model.data;
+package model.data;
 
 import java.util.ArrayList;
 
-import controller.model.dao.CommuneDAO;
+import controller.dao.CommuneDAO;
 
 public class Scenario {
 	public static void main(String[] args) {
