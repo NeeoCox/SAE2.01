@@ -19,7 +19,7 @@
             </StackPane>
             <StackPane layoutX="13.0" layoutY="259.0" prefHeight="28.0" prefWidth="216.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="6.0" prefWidth="226.0" />
+                  <PasswordField />
                </children>
             </StackPane>
             <Label layoutX="14.0" layoutY="181.0" prefHeight="28.0" prefWidth="131.0" text="Adresse électronique" />
