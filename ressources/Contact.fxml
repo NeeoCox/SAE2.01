@@ -7,17 +7,50 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane minHeight="425.0" minWidth="798.0" prefHeight="425.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ToolBar prefHeight="75.0" prefWidth="798.0">
          <items>
-            <ImageView fitHeight="55.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/1200px-Région-bretagne-logo.svg.png" />
-               </image>
-            </ImageView>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="77.0" text="Acceuil" />
+            <StackPane prefHeight="3.0" prefWidth="93.0">
+               <children>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="87.0" prefWidth="93.0" text="Menu">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Acceuil" />
+                        <MenuItem mnemonicParsing="false" text="Actualités" />
+                     </items>
+                  </MenuButton>
+               </children>
+            </StackPane>
+            <Button fx:id="exporter" mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="34.0" prefWidth="85.0" text="exporter" />
+            <TextField fx:id="villeAChercher" prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
+            <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" prefWidth="68.0" text="recherche" />
+            <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
          </items>
       </ToolBar>
    </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField layoutX="26.0" layoutY="56.0" />
+            <Label layoutX="26.0" layoutY="31.0" text="Nom" />
+            <Label layoutX="26.0" layoutY="94.0" text="Prénom" />
+            <TextField layoutX="26.0" layoutY="121.0" />
+            <Label layoutX="26.0" layoutY="158.0" text="EMail" />
+            <TextField layoutX="26.0" layoutY="182.0" />
+            <TextField layoutX="26.0" layoutY="248.0" />
+            <Label layoutX="27.0" layoutY="218.0" text="Sujet" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea layoutX="32.0" layoutY="63.0" prefHeight="238.0" prefWidth="528.0" promptText="Ce pour quoi vous nous contactez" />
+            <Label layoutX="32.0" layoutY="31.0" text="Contenu" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
