@@ -17,15 +17,15 @@
             </StackPane>
             <StackPane layoutX="12.0" layoutY="154.0" prefHeight="28.0" prefWidth="216.0">
                <children>
-                  <PasswordField />
+                  <PasswordField fx:id="mdp"/>
                </children>
             </StackPane>
             <Label layoutX="13.0" layoutY="71.0" prefHeight="28.0" prefWidth="131.0" text="Adresse électronique" />
             <Label layoutX="14.0" layoutY="137.0" text="Mot de passe" />
-            <Button layoutX="93.0" layoutY="246.0" mnemonicParsing="false" text="Se connecter" />
+            <Button onAction="#connecter" layoutX="93.0" layoutY="246.0" mnemonicParsing="false" text="Se connecter" />
             <Separator layoutX="31.0" layoutY="283.0" prefWidth="200.0" />
             <Button layoutX="83.0" layoutY="304.0" mnemonicParsing="false" text="Créer un compte" />
-            <Button alignment="TOP_LEFT" layoutX="188.0" layoutY="14.0" mnemonicParsing="false" text="Annuler" />
+            <Button onAction="#versPageAccueil" alignment="TOP_LEFT" layoutX="188.0" layoutY="14.0" mnemonicParsing="false" text="Annuler" />
             <Button layoutX="70.0" layoutY="195.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Mot de passe oubliée" />
             <Label layoutX="21.0" layoutY="18.0" text="Connexion">
                <font>

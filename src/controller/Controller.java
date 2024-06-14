@@ -73,30 +73,9 @@ public class Controller {
 	}
 
 	public void connecter(ActionEvent ev){
-		labelIncorrect.setTextFill(Color.rgb(255, 0, 0));
 		DAO.setUsername(mail.getText());
 		DAO.setPwd(mdp.getText());
-		Scene scene = null;
-		try{
-			Parent root = FXMLLoader.load(new URL("file:../ressources/Acceuil.fxml"));
-			scene = new Scene(root, 536, 383);
-			
-		}catch(IOException ex){
-			ex.printStackTrace();
-			labelIncorrect.setText("problème de connection");
-		}
-		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
-
-		stage.setMinWidth(536);
-		stage.setMinHeight(383);
-		stage.setMaxWidth(536);
-		stage.setMaxHeight(383);
-
-		stage.setResizable(false);
-
-		stage.setScene(scene);
-		
-		stage.centerOnScreen();
+		this.versPageAccueil(ev);
 		
 		System.out.println("ok");
 		System.out.println(mail.getText());
@@ -104,6 +83,22 @@ public class Controller {
 	}
 
 
+	public void versPageAccueil(ActionEvent ev){
+		System.out.println("accueil");
+		Scene scene = null;
+		try{
+			Parent root = FXMLLoader.load(new URL("file:../ressources/Acceuil.fxml"));
+			scene = new Scene(root);
+			
+		}catch(IOException ex){
+			ex.printStackTrace();
+		}
+		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
+		stage.setResizable(false);
+		stage.setScene(scene);
+		
+		stage.centerOnScreen();
+	}
 	
 
 
