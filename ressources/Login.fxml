@@ -6,9 +6,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<BorderPane maxHeight="383.0" maxWidth="641.0" minHeight="383.0" minWidth="237.0" prefHeight="383.0" prefWidth="262.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
-   <right>
-      <AnchorPane maxWidth="295.0" minHeight="389.0" minWidth="242.0" prefHeight="389.0" prefWidth="295.0" style="-fx-background-color: #8eb9c5;" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="383.0" maxWidth="641.0" minHeight="383.0" minWidth="237.0" prefHeight="383.0" prefWidth="262.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller" stylesheets="@Login.css">
+   <center>
+      <AnchorPane maxWidth="295.0" minHeight="389.0" minWidth="242.0" prefHeight="389.0" prefWidth="295.0" BorderPane.alignment="CENTER">
          <children>
             <StackPane layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="213.0">
                <children>
@@ -34,8 +34,5 @@
             </Label>
          </children>
       </AnchorPane>
-   </right>
-   <center>
-      <AnchorPane prefHeight="383.0" prefWidth="263.0" style="-fx-background-color: #8eb9c5;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
