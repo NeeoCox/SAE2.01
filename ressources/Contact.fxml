@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
-<?import java.util.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <top>
@@ -22,7 +18,7 @@
                         <Font size="14.0" />
                      </font>
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Contact" />
+                        <MenuItem mnemonicParsing="false" text="Acceuil" />
                         <MenuItem mnemonicParsing="false" text="Actualités" />
                      </items>
                   </MenuButton>
@@ -35,4 +31,26 @@
          </items>
       </ToolBar>
    </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField layoutX="26.0" layoutY="56.0" />
+            <Label layoutX="26.0" layoutY="31.0" text="Nom" />
+            <Label layoutX="26.0" layoutY="94.0" text="Prénom" />
+            <TextField layoutX="26.0" layoutY="121.0" />
+            <Label layoutX="26.0" layoutY="158.0" text="EMail" />
+            <TextField layoutX="26.0" layoutY="182.0" />
+            <TextField layoutX="26.0" layoutY="248.0" />
+            <Label layoutX="27.0" layoutY="218.0" text="Sujet" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea layoutX="32.0" layoutY="63.0" prefHeight="238.0" prefWidth="528.0" promptText="Ce pour quoi vous nous contactez" />
+            <Label layoutX="32.0" layoutY="31.0" text="Contenu" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

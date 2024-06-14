@@ -19,7 +19,7 @@ public class App extends Application {
             stage.show();
 
         } catch (IOException e) {
-            System.out.println("Potit probleme");
+            System.out.println("Erreur");
             e.printStackTrace();
         }
     }

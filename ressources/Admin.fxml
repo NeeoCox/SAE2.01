@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <top>
+    <ToolBar prefHeight="75.0" prefWidth="798.0">
+        <items>
+           <StackPane prefHeight="3.0" prefWidth="93.0">
+              <children>
+                 <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="87.0" prefWidth="93.0" text="Menu">
+                    <font>
+                       <Font size="14.0" />
+                    </font>
+                    <items>
+                       <MenuItem mnemonicParsing="false" text="Contact" />
+                       <MenuItem mnemonicParsing="false" text="Actualités" />
+                    </items>
+                 </MenuButton>
+              </children>
+           </StackPane>
+           <Button fx:id="exporter" mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="34.0" prefWidth="85.0" text="exporter" />
+           <TextField fx:id="villeAChercher" prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
+           <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" prefWidth="68.0" text="recherche" />
+           <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
+        </items>
+     </ToolBar>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="134.0" prefHeight="41.0" prefWidth="114.0" text="Habitation" />
+            <Label alignment="CENTER" layoutX="248.0" prefHeight="41.0" prefWidth="103.0" text="Nb Habitant " />
+            <Label alignment="CENTER" layoutX="376.0" prefHeight="41.0" prefWidth="72.0" text="Note ville" />
+            <Label alignment="CENTER" layoutX="432.0" prefHeight="41.0" prefWidth="153.0" text="Transport" />
+            <ImageView fitHeight="313.0" fitWidth="337.0" layoutX="461.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="308.0" fitWidth="464.0" layoutX="-3.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+            <Label alignment="CENTER" layoutX="585.0" prefHeight="41.0" prefWidth="68.0" text="Lieu notoire" />
+            <Label alignment="CENTER" prefHeight="41.0" prefWidth="134.0" text="Nom de la ville" />
+            <Label alignment="CENTER" layoutX="645.0" prefHeight="41.0" prefWidth="153.0" text="Budget" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

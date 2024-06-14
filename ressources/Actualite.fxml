@@ -22,8 +22,8 @@
                         <Font size="14.0" />
                      </font>
                      <items>
+                        <MenuItem mnemonicParsing="false" text="Acceuil" />
                         <MenuItem mnemonicParsing="false" text="Contact" />
-                        <MenuItem mnemonicParsing="false" text="Actualités" />
                      </items>
                   </MenuButton>
                </children>

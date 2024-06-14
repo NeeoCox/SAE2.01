@@ -79,13 +79,25 @@ public class Controller {
 		Scene scene = null;
 		try{
 			Parent root = FXMLLoader.load(new URL("file:../ressources/Acceuil.fxml"));
-			scene = new Scene(root);
+			scene = new Scene(root, 536, 383);
+			
 		}catch(IOException ex){
 			ex.printStackTrace();
 			labelIncorrect.setText("problème de connection");
 		}
 		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
+
+		stage.setMinWidth(536);
+		stage.setMinHeight(383);
+		stage.setMaxWidth(536);
+		stage.setMaxHeight(383);
+
+		stage.setResizable(false);
+
 		stage.setScene(scene);
+		
+		stage.centerOnScreen();
+		
 		System.out.println("ok");
 		System.out.println(mail.getText());
 		System.out.println(mdp.getText());
