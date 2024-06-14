@@ -3,9 +3,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.data.Commune;
+import model.data.Departement;
 import model.data.Gare;
 
 
@@ -25,7 +28,22 @@ public class CommuneDAO extends DAO<Commune> {
 				result.add(new Commune(id, nom));
 			}
 		}catch(SQLException e){
-			
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public Departement getDepartement(String idCommune){
+		Departement result = null;
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM commune WHERE idCommune = ?")){
+			st.setString(1, idCommune);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()){
+				int id = rs.getInt("leDepartement");
+				result = new Departement(id);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -84,4 +102,56 @@ public class CommuneDAO extends DAO<Commune> {
 		return gare(String.valueOf(id));
 	}
 
+	
+	public int create(Commune commune){
+		int result = -1;
+		String query = "INSERT INTO Commune() VALUES ('"+commune.getIdCommune()+","+commune.getNomCommune()+","+this.getDepartement(String.valueOf(commune.getIdCommune())).getIdDep()+"')";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(query);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public List<Commune> findAll(){
+		List<Commune> result = new ArrayList<Commune>(); 
+		try(Connection connect = createConnection(); Statement st = connect.createStatement()){
+			ResultSet rs = st.executeQuery("SELECT * FROM Commune");
+			while(rs.next()){
+				int idCommune = rs.getInt("idCommune");
+				String nomCommune = rs.getString("nomCommune");
+				result.add(new Commune(idCommune, nomCommune));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+	public int update(Commune commune){
+		int result = -1;
+		String query = "UPDATE Commune SET idCommune='"+ commune.getIdCommune() +"', nomCommune='"+commune.getNomCommune() +"', leDepartement='"+this.getDepartement(String.valueOf(commune.getIdCommune())).getIdDep()+"'";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(query);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	public int delete(Commune commune){
+		int result = -1;
+		String query = "DELETE FROM commune WHERE idCommune ='"+commune.getIdCommune()+"'";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(query);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

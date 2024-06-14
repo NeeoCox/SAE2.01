@@ -73,7 +73,6 @@ public class Controller {
 	}
 
 	public void connecter(ActionEvent ev){
-		//todo avoir des gens pour ce co
 		labelIncorrect.setTextFill(Color.rgb(255, 0, 0));
 		DAO.setUsername(mail.getText());
 		DAO.setPwd(mdp.getText());
@@ -91,6 +90,12 @@ public class Controller {
 		System.out.println(mail.getText());
 		System.out.println(mdp.getText());
 	}
+
+
+	
+
+
+
 
 
 	/**

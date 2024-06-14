@@ -11,6 +11,19 @@ public class Departement {
 	private ArrayList<Commune> listeCommunes;
 	private ArrayList<Aeroport> listeAeroport;
 	private DepartementDAO dao;
+
+	/**
+	 * Constructeur pour DAO
+	 * @param id l'id du Departement
+	 */
+	public Departement(int id){
+		if(id < 0) throw new IllegalArgumentException("ID negatif");
+		this.idDep = id;
+		this.nomDep = "N/A";
+		this.invesCulturel2019 = 0;
+		this.listeCommunes = new ArrayList<Commune>();
+		this.listeAeroport = new ArrayList<Aeroport>();
+	}
 	
 	public Departement(int id,String nom,float inves){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
