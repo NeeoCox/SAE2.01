@@ -35,6 +35,7 @@ public class Aeroport {
 
     public String emplacementAeroport(Departement d){
         String ret = "";
+        if(d == null){throw new IllegalArgumentException("Il faut un departement non null");}
         for (Aeroport aeroport : d.getListeAeroport()) {
             if (aeroport.getNom().equals(this.nom)) {
                 ret = ret + "L'aeroport est dans le departement : " + d.getNomDep();

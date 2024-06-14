@@ -91,6 +91,15 @@ public class Gare {
 		this.estVoyageur = estVoyageur;
 	}
 
-
+	public boolean communeGare(Commune c){
+		boolean ret = false;
+		if(c == null){throw new IllegalArgumentException("la commune ne doit pas etre null");}
+		for (Gare gare : c.getListeGare()) {
+			if(gare.getCodeGare() == this.codeGare){
+				ret = true;
+			}
+		}
+		return ret;
+	}
 	
 }
