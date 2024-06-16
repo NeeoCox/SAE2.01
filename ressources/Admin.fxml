@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <top>
     <ToolBar prefHeight="75.0" prefWidth="798.0">
         <items>
@@ -32,11 +32,12 @@
            <TextField fx:id="villeAChercher" prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
            <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" prefWidth="68.0" text="recherche" />
            <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="73.0" text="Modifier" />
         </items>
      </ToolBar>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="354.0" prefWidth="852.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" layoutX="134.0" prefHeight="41.0" prefWidth="114.0" text="Habitation" />
             <Label alignment="CENTER" layoutX="248.0" prefHeight="41.0" prefWidth="103.0" text="Nb Habitant " />

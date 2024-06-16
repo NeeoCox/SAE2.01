@@ -59,6 +59,7 @@ public class Controller {
 
 
 	public void versPageLogin(ActionEvent e){
+		
 		System.out.println("login");
 		Scene scene =null;
 		try {
@@ -70,6 +71,10 @@ public class Controller {
 		Stage stage= (Stage) ((Node)e.getSource ()).getScene ().getWindow ();
 		stage.setScene(scene);
 
+		stage.setMinWidth(262);
+		stage.setMinHeight(383);
+
+		stage.setResizable(false);
 	}
 
 	public void connecter(ActionEvent ev){
@@ -88,14 +93,8 @@ public class Controller {
 		}
 		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
 
-		stage.setMinWidth(536);
-		stage.setMinHeight(383);
-		stage.setMaxWidth(536);
-		stage.setMaxHeight(383);
-
-		stage.setResizable(false);
-
-		stage.setScene(scene);
+		stage.setMinWidth(798);
+		stage.setMinHeight(425);
 		
 		stage.centerOnScreen();
 		

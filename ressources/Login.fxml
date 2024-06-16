@@ -6,26 +6,26 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller" stylesheets="@Login.css" alignment="CENTER">
+<StackPane alignment="CENTER" minHeight="383.0" minWidth="262.0" prefHeight="425.0" prefWidth="798.0" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
-      <BorderPane maxHeight="383.0" maxWidth="641.0" minHeight="383.0" minWidth="237.0" prefHeight="383.0" prefWidth="262.0">
+      <BorderPane maxHeight="429.0" maxWidth="802.0" minHeight="383.0" minWidth="237.0" prefHeight="429.0" prefWidth="798.0">
          <center>
             <AnchorPane maxWidth="295.0" minHeight="389.0" minWidth="242.0" prefHeight="389.0" prefWidth="295.0" BorderPane.alignment="CENTER">
                <children>
-                  <StackPane layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="213.0">
+                  <StackPane layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="234.0">
                      <children>
-                        <TextField fx:id="mail" alignment="CENTER" prefHeight="25.0" prefWidth="213.0" />
+                        <TextField fx:id="mail" prefHeight="25.0" prefWidth="213.0" />
                      </children>
                   </StackPane>
-                  <StackPane layoutX="12.0" layoutY="154.0" prefHeight="28.0" prefWidth="216.0">
+                  <StackPane layoutX="12.0" layoutY="154.0" prefHeight="28.0" prefWidth="236.0">
                      <children>
-                        <PasswordField />
+                        <PasswordField prefHeight="25.0" prefWidth="233.0" />
                      </children>
                   </StackPane>
-                  <Label layoutX="13.0" layoutY="71.0" prefHeight="28.0" prefWidth="131.0" text="Adresse électronique" />
-                  <Label layoutX="14.0" layoutY="137.0" text="Mot de passe" />
+                  <Label layoutX="14.0" layoutY="71.0" prefHeight="28.0" prefWidth="131.0" text="Adresse électronique" />
+                  <Label layoutX="14.0" layoutY="126.0" prefHeight="28.0" prefWidth="131.0" text="Mot de passe" />
                   <Button layoutX="93.0" layoutY="246.0" mnemonicParsing="false" text="Se connecter" />
-                  <Separator layoutX="31.0" layoutY="283.0" prefWidth="200.0" />
+                  <Separator layoutX="20.0" layoutY="283.0" prefHeight="0.0" prefWidth="232.0" />
                   <Button layoutX="83.0" layoutY="304.0" mnemonicParsing="false" text="Créer un compte" />
                   <Button alignment="TOP_LEFT" layoutX="188.0" layoutY="14.0" mnemonicParsing="false" text="Annuler" />
                   <Button layoutX="70.0" layoutY="195.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Mot de passe oubliée" />
@@ -37,6 +37,13 @@
                </children>
             </AnchorPane>
          </center>
+         <left>
+            <ImageView fitHeight="426.0" fitWidth="399.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@img/2024-05-28%2018_11_45-Window.png" />
+               </image>
+            </ImageView>
+         </left>
       </BorderPane>
    </children>
 </StackPane>

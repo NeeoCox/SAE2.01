@@ -19,6 +19,12 @@ public class App extends Application {
             Parent root = FXMLLoader.load(fxmlLocation);
             stage.setTitle("SAE commune bretonne");
             stage.setScene(new Scene(root));
+		
+		    stage.centerOnScreen();
+
+            stage.setMinWidth(798);
+		    stage.setMinHeight(425);
+
             stage.show();
 
         } catch (IOException e) {
