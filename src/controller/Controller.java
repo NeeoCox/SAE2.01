@@ -99,6 +99,23 @@ public class Controller {
 		
 		stage.centerOnScreen();
 	}
+
+	public void versPageCreationDeCompte(ActionEvent ev){
+		System.out.println("creation");
+		Scene scene = null;
+		try{
+			Parent root = FXMLLoader.load(new URL("file:../ressources/Creation.fxml"));
+			scene = new Scene(root);
+			
+		}catch(IOException ex){
+			ex.printStackTrace();
+		}
+		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
+		stage.setResizable(false);
+		stage.setScene(scene);
+		
+		stage.centerOnScreen();
+	}
 	
 
 
