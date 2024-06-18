@@ -1,5 +1,4 @@
+/*Mettre une couleur de fond */
 .root {
     -fx-background-color: #8eb9c5;
-    justify-content: center;
-    align-items: center;
 }
