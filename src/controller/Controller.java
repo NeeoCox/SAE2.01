@@ -89,7 +89,7 @@ public class Controller {
 		this.changerDePage("file:../ressources/Accueil.fxml");
 	}
 
-	public void versPageCreationDeCompte(ActionEvent ev){
+	public void versPageCreation(ActionEvent ev){
 		System.out.println("creation");
 		this.changerDePage("file:../ressources/Creation.fxml");
 	}
