@@ -23,18 +23,47 @@ public class Commune {
 	 * this attribut is used to store every train station located in the commune
 	 */
 	private ArrayList<Gare> listeGare;
+	
+	private int année;
+
+	private float tauxInflation;
+
+	private int nbMaison;
+
+	private int nbAppart;
+
+	private float prixMoyen;
+
+	private float prixM2Moyen;
+
+	private float surfaceMoy;
+
+	private float depCulturelleTotal;
+
+	private float budgetTotal;
+
+	private float population;
 
 	/**
 	 * this method is used to set all the attributs/create depending on the parameters, it's the first contructor
 	 * @param idCommune, the commune's id
 	 * @param nomCommune, the commune's name
 	 */
-	public Commune(int idCommune, String nomCommune){
+	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
 		if(nomCommune == null) throw new IllegalArgumentException("Nom null");
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
+		this.année = annee;
+		this.nbMaison = nbMaison;
+		this.nbAppart = nbAppart;
+		this.prixM2Moyen = prixM2Moyen;
+		this.prixMoyen = prixMoyen;
+		this.surfaceMoy = surface;
+		this.depCulturelleTotal = depCulturelleTotal;
+		this.budgetTotal = bugdet;
+		this.population = population;
 		this.listeGare = new ArrayList<Gare>();
 		this.listeVoisine = new ArrayList<Commune>();
 	}
@@ -46,7 +75,7 @@ public class Commune {
 	 * @param listeVoisine, the list containing all neighbour communes
 	 * @param listeGare, the list containing all the train stations inside the commune
 	 */
-	public Commune(int idCommune, String nomCommune,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
+	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
 		if(nomCommune == null) throw new IllegalArgumentException("Nom null");
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
@@ -54,7 +83,17 @@ public class Commune {
 		if(listeVoisine == null) throw new IllegalArgumentException("Liste voisine null");
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
+		this.année = annee;
+		this.nbMaison = nbMaison;
+		this.nbAppart = nbAppart;
+		this.prixM2Moyen = prixM2Moyen;
+		this.prixMoyen = prixMoyen;
+		this.surfaceMoy = surface;
+		this.depCulturelleTotal = depCulturelleTotal;
+		this.budgetTotal = bugdet;
+		this.population = population;
 		this.listeGare = listeGare;
+		this.listeVoisine = listeVoisine;
 	}
 	/**
 	 * this method is used to get the id of the commune
@@ -83,6 +122,70 @@ public class Commune {
 	 */
 	public ArrayList<Commune> getListeVoisine() {
 		return listeVoisine;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public int getAnnee(){
+		return this.année;
+	}
+	public float getTauxInflation(){
+		return this.tauxInflation;
+	}
+	public int getNbMaison(){
+		return nbMaison;
+	}
+	public int getNbAppart(){
+		return nbAppart;
+	}
+	public float getPrixMoyen(){
+		return this.prixMoyen;
+	}
+	public float getPrixM2Moyen(){
+		return this.prixM2Moyen;
+	}
+	public float getSurfaceMoy(){
+		return this.surfaceMoy;
+	}
+	public float getDepCulturelleTotal(){
+		return this.depCulturelleTotal;
+	}
+	public float getBudgetTotal(){
+		return this.budgetTotal;
+	}
+	public float getPopulation(){
+		return this.population;
+	}
+	public void setAnnee(int annee){
+		this.année = annee;
+	}
+	public void setTauxInflation(float taux){
+		this.tauxInflation = taux;
+	}
+	public void setNbMaison(int nbMaison){
+		this.nbMaison = nbMaison;
+	}
+	public void setNbAppart(int nbAppart){
+		this.nbAppart = nbAppart;
+	}
+	public void setPrixMoyen(float prixMoyen){
+		this.prixMoyen = prixMoyen;
+	}
+	public void setPrixM2Moyen(float prixM2Moyen){
+		this.prixM2Moyen = prixM2Moyen;
+	}
+	public void setSurfaceMoy(float surface){
+		this.surfaceMoy = surface;
+	}
+	public void setDepCulturelleTotal(float depense){
+		this.depCulturelleTotal = depense;
+	}
+	public void setBudgetTotal(float budget){
+		this.budgetTotal = budget;
+	}
+	public void setPopulation(float pop){
+		this.population = pop;
 	}
 	/**
 	 * this method is used to set the id depending of the parameter
