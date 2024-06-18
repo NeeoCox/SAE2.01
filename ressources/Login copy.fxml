@@ -33,9 +33,9 @@
                </font>
             </Label>
          </children>
-      
-         </center>
-      </BorderPane>
+      </AnchorPane>
+   </center>
+</BorderPane>
                   <StackPane layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="234.0">
                      <children>
                         <TextField fx:id="mail" prefHeight="25.0" prefWidth="213.0" />
@@ -59,6 +59,7 @@
                      </font>
                   </Label>
                </children>
+            </AnchorPane>
          </center>
          <left>
             <ImageView fitHeight="426.0" fitWidth="399.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
