@@ -64,7 +64,7 @@ public class Controller {
 		System.out.println("login");
 		Scene scene =null;
 		try {
-			Parent root = FXMLLoader.load(new URL("file:../ressources/Login.fxml"));
+			Parent root = FXMLLoader.load(new URL("file:../ressources/Contact.fxml"));
 			scene= new Scene(root);
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -72,8 +72,8 @@ public class Controller {
 		Stage stage= (Stage) ((Node)e.getSource ()).getScene ().getWindow ();
 		stage.setScene(scene);
 
-		stage.setMinWidth(956);
-		stage.setMinHeight(536);
+		// stage.setMinWidth(956);
+		// stage.setMinHeight(536);
 
 		//stage.setResizable(false);
 	}
