@@ -36,11 +36,10 @@
             </items>
         </ToolBar>
     </top>
-    <center>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <GridPane alignment="CENTER" hgap="20" layoutX="19.0" layoutY="6.0" prefHeight="17.0" prefWidth="797.0" vgap="10">
-                     /*
+   <center>
+      <BorderPane prefHeight="461.0" prefWidth="832.0" BorderPane.alignment="CENTER">
+         <top>
+                <GridPane alignment="CENTER" hgap="20" prefHeight="17.0" prefWidth="845.0" vgap="10" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />
@@ -51,7 +50,7 @@
                         <ColumnConstraints hgrow="ALWAYS" />
                     </columnConstraints>
                     <children>
-                        <Label alignment="CENTER" text="Habitation" GridPane.columnIndex="0" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Habitation" GridPane.columnIndex="0" />
                         <Label alignment="CENTER" text="Nb Habitant" GridPane.columnIndex="1" />
                         <Label alignment="CENTER" text="Note ville" GridPane.columnIndex="2" />
                         <Label alignment="CENTER" text="Transport" GridPane.columnIndex="3" />
@@ -63,21 +62,7 @@
                         <RowConstraints />
                     </rowConstraints>
                 </GridPane>
-                <HBox alignment="CENTER" layoutY="50.0" spacing="10">
-                    <children>
-                        <ImageView fitHeight="313.0" fitWidth="337.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                            <image>
-                                <Image url="@../img/pikmin.png" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="308.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                            <image>
-                                <Image url="@img/free-nature-images.jpg" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </HBox>
-            </children>
-        </AnchorPane>
-    </center>
+         </top>
+      </BorderPane>
+   </center>
 </BorderPane>

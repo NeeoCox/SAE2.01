@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.dao.CommuneDAO;
@@ -71,10 +72,10 @@ public class Controller {
 		Stage stage= (Stage) ((Node)e.getSource ()).getScene ().getWindow ();
 		stage.setScene(scene);
 
-		stage.setMinWidth(262);
-		stage.setMinHeight(383);
+		stage.setMinWidth(956);
+		stage.setMinHeight(536);
 
-		stage.setResizable(false);
+		//stage.setResizable(false);
 	}
 
 	public void connecter(ActionEvent ev){
