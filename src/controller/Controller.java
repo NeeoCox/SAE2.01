@@ -87,7 +87,6 @@ public class Controller {
 	public void versPageAccueil(ActionEvent ev){
 		System.out.println("accueil");
 		this.changerDePage("file:../ressources/Accueil.fxml");
-		menuButton.setText("Accueil");
 	}
 
 	public void versPageCreationDeCompte(ActionEvent ev){
@@ -99,13 +98,11 @@ public class Controller {
 	public void versPageContact(ActionEvent ev){
 		System.out.println("contact");
 		this.changerDePage("file:../ressources/Contact.fxml");
-		menuButton.setText("Contact");
 	}
 
 	public void versPageActu(ActionEvent ev){
 		System.out.println("actu");
 		this.changerDePage("file:../ressources/Actualite.fxml");
-		menuButton.setText("Actualité");
 
 	}
 
