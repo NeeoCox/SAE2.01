@@ -8,11 +8,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
+import controller.Controller;
+
 public class App extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            URL fxmlLocation = new URL("file:../ressources/Acceuil.fxml");
+            
+            Controller c = new Controller();
+            System.out.println("setstage");
+            c.setStage(stage);
+            URL fxmlLocation = new URL("file:../ressources/Accueil.fxml");
             Parent root = FXMLLoader.load(fxmlLocation);
             stage.setTitle("SAE commune bretonne");
             stage.setScene(new Scene(root));

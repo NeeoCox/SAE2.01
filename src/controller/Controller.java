@@ -12,8 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
 import model.dao.CommuneDAO;
 import model.data.Commune;
@@ -25,6 +25,7 @@ import javafx.scene.paint.Color;
  */
 public class Controller {
 
+	private static Stage stage;
 	@FXML
 	private Button exporter;
 	@FXML
@@ -39,6 +40,8 @@ public class Controller {
 	TextField mdp;
 	@FXML
 	Label labelIncorrect;
+	@FXML
+	MenuButton menuButton;
 
 	CommuneDAO _c;
 
@@ -46,8 +49,13 @@ public class Controller {
 		_c = new CommuneDAO();
 	}
 
-	public void handleSubmitButtonAction(ActionEvent e){
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
+	public void export(ActionEvent e){
 		System.out.println("exporter");
+		// this.export();
 	}
 
 
@@ -61,20 +69,8 @@ public class Controller {
 	public void versPageLogin(ActionEvent e){
 		
 		System.out.println("login");
-		Scene scene =null;
-		try {
-			Parent root = FXMLLoader.load(new URL("file:../ressources/Login.fxml"));
-			scene= new Scene(root);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}		
-		Stage stage= (Stage) ((Node)e.getSource ()).getScene ().getWindow ();
-		stage.setScene(scene);
+		this.changerDePage("file:../ressources/Login.fxml");
 
-		stage.setMinWidth(956);
-		stage.setMinHeight(536);
-
-		//stage.setResizable(false);
 	}
 
 	public void connecter(ActionEvent ev){
@@ -90,41 +86,43 @@ public class Controller {
 
 	public void versPageAccueil(ActionEvent ev){
 		System.out.println("accueil");
-		Scene scene = null;
-		try{
-			Parent root = FXMLLoader.load(new URL("file:../ressources/Acceuil.fxml"));
-			scene = new Scene(root);
-			
-		}catch(IOException ex){
-			ex.printStackTrace();
-		}
-		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
-		stage.setResizable(false);
-		stage.setScene(scene);
-		
-		stage.centerOnScreen();
+		this.changerDePage("file:../ressources/Accueil.fxml");
+		menuButton.setText("Accueil");
 	}
 
 	public void versPageCreationDeCompte(ActionEvent ev){
 		System.out.println("creation");
+		this.changerDePage("file:../ressources/Creation.fxml");
+	}
+	
+
+	public void versPageContact(ActionEvent ev){
+		System.out.println("contact");
+		this.changerDePage("file:../ressources/Contact.fxml");
+		menuButton.setText("Contact");
+	}
+
+	public void versPageActu(ActionEvent ev){
+		System.out.println("actu");
+		this.changerDePage("file:../ressources/Actualite.fxml");
+		menuButton.setText("Actualité");
+
+	}
+
+	private void changerDePage(String url) {
 		Scene scene = null;
 		try{
-			Parent root = FXMLLoader.load(new URL("file:../ressources/Creation.fxml"));
+			Parent root = FXMLLoader.load(new URL(url));
 			scene = new Scene(root);
 			
 		}catch(IOException ex){
 			ex.printStackTrace();
 		}
-		Stage stage= (Stage) ((Node)ev.getSource()).getScene().getWindow();
-		stage.setResizable(false);
-		stage.setScene(scene);
+		this.stage.setResizable(false);
+		this.stage.setScene(scene);
 		
-		stage.centerOnScreen();
-	}
-	
-
-
-
+		this.stage.centerOnScreen();
+    }
 
 
 	/**
