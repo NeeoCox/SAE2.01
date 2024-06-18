@@ -1,7 +1,6 @@
 package model.data;
 import java.util.ArrayList;
 
-import model.dao.CommuneDAO;
 
 /**
  * Commune
@@ -13,7 +12,6 @@ public class Commune {
 	private String nomCommune;
 	private ArrayList<Commune> listeVoisine;
 	private ArrayList<Gare> listeGare;
-	private CommuneDAO c;
 
 	public Commune(int idCommune, String nomCommune){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
@@ -69,18 +67,7 @@ public class Commune {
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		this.nomCommune = nomCommune;
 	}
-	public boolean checkAnnee(int annee){
-		boolean ret = false;
-		String idCommuneS = "" + this.idCommune;
-		ArrayList<Integer> a = c.setAnnee(idCommuneS);
-		for (Integer integer : a) {
-			if (integer == annee) {
-				ret = true;
-			}
-		}
-		return ret;
 
-	}
 	public boolean estVoisine(Commune commu){
 		boolean ret = false;
 		if (commu != null) {
@@ -89,6 +76,8 @@ public class Commune {
 					ret = true;
 				}
 			}
+		}else{
+			throw new IllegalArgumentException("Cette commune n'est pas dans la liste");
 		}
 		return ret;
 	}

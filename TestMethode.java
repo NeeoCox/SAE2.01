@@ -13,6 +13,8 @@ public class TestMethode{
     
     @Test
     public void testCheckAnnee(){
+        
         ArrayList<Commune> co = d.getListeCommunes();
+
     }
 }

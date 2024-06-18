@@ -2,7 +2,6 @@ package model.data;
 
 import java.util.ArrayList;
 
-import model.dao.DepartementDAO;
 
 public class Departement {
 	private int idDep;
@@ -10,20 +9,6 @@ public class Departement {
 	private float invesCulturel2019;
 	private ArrayList<Commune> listeCommunes;
 	private ArrayList<Aeroport> listeAeroport;
-	private DepartementDAO dao;
-
-	/**
-	 * Constructeur pour DAO
-	 * @param id l'id du Departement
-	 */
-	public Departement(int id){
-		if(id < 0) throw new IllegalArgumentException("ID negatif");
-		this.idDep = id;
-		this.nomDep = "N/A";
-		this.invesCulturel2019 = 0;
-		this.listeCommunes = new ArrayList<Commune>();
-		this.listeAeroport = new ArrayList<Aeroport>();
-	}
 	
 	public Departement(int id,String nom,float inves){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
@@ -38,20 +23,21 @@ public class Departement {
 		this.listeAeroport = new ArrayList<Aeroport>();
 	}
 
-	public Departement(int id,String nom,float inves,String idDep){
+	public Departement(int id,String nom,float inves,ArrayList<Commune> communes, ArrayList<Aeroport> aeroports){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
 		if(id < 0) throw new IllegalArgumentException("ID negatif");
 		if(nom == null) throw new IllegalArgumentException("Nom null");
 		if(nom.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		if(listeCommunes == null) throw new IllegalArgumentException("Liste Commune null");
-		if(listeAeroport== null) throw new IllegalArgumentException("Liste Aeroport null");
+		if(listeAeroport == null) throw new IllegalArgumentException("Liste Aeroport null");
 		if(nom != nom.toUpperCase()) throw new IllegalArgumentException("Le nom doit etre en majuscule");
+		if(communes == null) throw new IllegalArgumentException("Il doit y avoir une liste de communes");
+		if(aeroports == null) throw new IllegalArgumentException("Il faut une liste d'aeroports");
 		this.idDep = id;
 		this.nomDep = nom;
 		this.invesCulturel2019 = inves;
-		this.dao = new DepartementDAO();
-		this.listeCommunes = this.dao.listeCommunes(idDep);
-		this.listeAeroport = this.dao.listeAeroport(idDep);
+		this.listeCommunes = communes;
+		this.listeAeroport = aeroports;
 	}
 
 	public int getIdDep() {
@@ -96,10 +82,25 @@ public class Departement {
 		return listeAeroport;
 	}
 
-	public boolean compareInvessTo(Departement d){
-		boolean ret = false;
-		if(d.getInvesCulturel2019() == this.invesCulturel2019){
-			ret = true;
+	public int compareInvessTo(Departement d){
+		int ret = 0;
+		if (d != null) {
+			if(d.getInvesCulturel2019() == this.invesCulturel2019){
+				ret = 1;
+			}else if (d.getInvesCulturel2019() > this.invesCulturel2019) {
+				ret = -1;
+			}
+		}else{
+			throw new IllegalArgumentException("Le departement n'existe pas");
+		}
+		return ret;
+	}
+
+	public int nbGare(){
+		int ret = 0;
+		for (Commune commune : this.listeCommunes) {
+			if (commune == null) {throw new IllegalArgumentException();}
+			ret = ret + commune.getListeGare().size();
 		}
 		return ret;
 	}
