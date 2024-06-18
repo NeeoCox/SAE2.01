@@ -45,9 +45,19 @@ public class Commune {
 	private float population;
 
 	/**
-	 * this method is used to set all the attributs/create depending on the parameters, it's the first contructor
+	 * * this method is used to set all the attributs/create depending on the parameters, it's the first contructor
 	 * @param idCommune, the commune's id
 	 * @param nomCommune, the commune's name
+	 * @param annee, the year
+	 * @param taux, the inflation
+	 * @param nbMaison, the number of houses
+	 * @param nbAppart, the number of appartments
+	 * @param prixM2Moyen, the average price of the m2
+	 * @param prixMoyen, the average price
+	 * @param surface, the average surface
+	 * @param depCulturelleTotal, the total amount of money spent
+	 * @param bugdet, the total budget
+	 * @param population, the total population
 	 */
 	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
@@ -74,6 +84,16 @@ public class Commune {
 	 * @param nomCommune, the commune's name
 	 * @param listeVoisine, the list containing all neighbour communes
 	 * @param listeGare, the list containing all the train stations inside the commune
+	 * @param annee, the year
+	 * @param taux, the inflation
+	 * @param nbMaison, the number of houses
+	 * @param nbAppart, the number of appartments
+	 * @param prixM2Moyen, the average price of the m2
+	 * @param prixMoyen, the average price
+	 * @param surface, the average surface
+	 * @param depCulturelleTotal, the total amount of money spent
+	 * @param bugdet, the total budget
+	 * @param population, the total population
 	 */
 	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
@@ -124,66 +144,142 @@ public class Commune {
 		return listeVoisine;
 	}
 	/**
-	 * 
-	 * @return
+	 * this method is used to get the year
+	 * @return, an int/ the year
 	 */
 	public int getAnnee(){
 		return this.année;
 	}
+	/**
+	 * this method is used to get the inflation
+	 * @return, a flaot/ the inflation
+	 */
 	public float getTauxInflation(){
 		return this.tauxInflation;
 	}
+	/**
+	 * this method is used to get the number of houses
+	 * @return, an int/ the number of houses
+	 */
 	public int getNbMaison(){
 		return nbMaison;
 	}
+	/**
+	 * this method is used to get the number of appartments
+	 * @return, an int/ the number of appartments
+	 */
 	public int getNbAppart(){
 		return nbAppart;
 	}
+	/**
+	 * this method is used to get the average price
+	 * @return, a float/ the average price
+	 */
 	public float getPrixMoyen(){
 		return this.prixMoyen;
 	}
+	/**
+	 * this method is used to get the average m2 price
+	 * @return,  a flaot/ the average m2 price
+	 */
 	public float getPrixM2Moyen(){
 		return this.prixM2Moyen;
 	}
+	/**
+	 * this method is used to get the average surface
+	 * @return, a flaot/ the average surface
+	 */
 	public float getSurfaceMoy(){
 		return this.surfaceMoy;
 	}
+	/**
+	 * this method is used to get the total cultural expenses
+	 * @return, a flaot/ the total cultural expenses
+	 */
 	public float getDepCulturelleTotal(){
 		return this.depCulturelleTotal;
 	}
+	/**
+	 * this method is used to get the total budget
+	 * @return, a float/ the total budget
+	 */
 	public float getBudgetTotal(){
 		return this.budgetTotal;
 	}
+	/**
+	 * this method is used to get the population
+	 * @return, a float/ the population
+	 */
 	public float getPopulation(){
 		return this.population;
 	}
+	/**
+	 * this method is used to set the year
+	 * @param annee, the year/ int
+	 */
 	public void setAnnee(int annee){
 		this.année = annee;
 	}
+	/**
+	 * this method is used to set the inflation
+	 * @param taux, the inflation/ float
+	 */
 	public void setTauxInflation(float taux){
 		this.tauxInflation = taux;
 	}
+	/**
+	 * this method is used to set the number of houses
+	 * @param nbMaison, the number of houses/ int
+	 */
 	public void setNbMaison(int nbMaison){
 		this.nbMaison = nbMaison;
 	}
+	/**
+	 * this method is used to set the number of appartments
+	 * @param nbAppart, the number of appartment/ int
+	 */
 	public void setNbAppart(int nbAppart){
 		this.nbAppart = nbAppart;
 	}
+	/**
+	 * this method is used to set the average price
+	 * @param prixMoyen, the average price/ float
+	 */
 	public void setPrixMoyen(float prixMoyen){
 		this.prixMoyen = prixMoyen;
 	}
+	/**
+	 * this method is used to set the average m2 price
+	 * @param prixM2Moyen, the average m2 price/ float
+	 */
 	public void setPrixM2Moyen(float prixM2Moyen){
 		this.prixM2Moyen = prixM2Moyen;
 	}
+	/**
+	 * this method is used to set the average surface
+	 * @param surface, the average surface/ float
+	 */
 	public void setSurfaceMoy(float surface){
 		this.surfaceMoy = surface;
 	}
+	/**
+	 * this method is used to set the cultural expenses
+	 * @param depense, the total cultural expenses/ float
+	 */
 	public void setDepCulturelleTotal(float depense){
 		this.depCulturelleTotal = depense;
 	}
+	/**
+	 * this method is used to set the total budget
+	 * @param budget, the total budget/ float
+	 */
 	public void setBudgetTotal(float budget){
 		this.budgetTotal = budget;
 	}
+	/**
+	 * this method is used to set the population
+	 * @param pop, the population/ float
+	 */
 	public void setPopulation(float pop){
 		this.population = pop;
 	}
