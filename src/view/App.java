@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,9 +21,11 @@ public class App extends Application {
             c.setStage(stage);
             URL fxmlLocation = new URL("file:../ressources/Accueil.fxml");
             Parent root = FXMLLoader.load(fxmlLocation);
-            stage.setTitle("SAE commune bretonne");
+            stage.setTitle("Commune Bretonne");
             stage.setScene(new Scene(root));
 		
+            stage.getIcons().add(new Image("file:../img/Logo.png"));
+
 		    stage.centerOnScreen();
 
             stage.setMinWidth(798);
