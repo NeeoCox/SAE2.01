@@ -18,14 +18,14 @@ public class CommuneDAO extends DAO<Commune> {
 
 	public ArrayList<Commune> find(String nomVille){
 		ArrayList<Commune> result = new ArrayList<Commune>();
-		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM commune WHERE nomCommune = ?")){
-			st.setString(1, nomVille);
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM commune, donneesannuelles, annee WHERE commune.idCommune = donneesannuelles.laCommune AND donneesannuelles.lAnnee = annee.annee AND commune.nomCommune = ?")){
+			st.setString(1, nomVille.toUpperCase());
 			ResultSet rs = st.executeQuery();
 			while(rs.next()){
 				int id = rs.getInt("idCommune");
 				System.out.println(rs.getString("nomCommune"));
 				String nom = rs.getString("nomCommune");
-				result.add(new Commune(id, nom));
+				result.add(new Commune(id, nom,rs.getInt("lAnnee"),rs.getFloat("tauxInflation"),rs.getInt("nbMaison"),rs.getInt("nbAppart"),rs.getFloat("prixM2Moyen"),rs.getFloat("prixMoyen"),rs.getFloat("SurfaceMoy"),rs.getFloat("depensesCulturellesTotales"),rs.getFloat("budgetTotal"),rs.getInt("population")));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class CommuneDAO extends DAO<Commune> {
 			st.setString(1, id);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				result.add(new Commune(rs.getInt("communeVoisine"),rs.getString("nomCommune")));
+				//result.add(new Commune(rs.getInt("communeVoisine"),rs.getString("nomCommune"),rs.getInt("")));
 			}
 		}catch(SQLException e){
 
@@ -88,7 +88,7 @@ public class CommuneDAO extends DAO<Commune> {
 	
 	public ArrayList<Gare> gare(String id){
 		ArrayList<Gare> result = new ArrayList<Gare>();
-		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM Gare WHERE laCommune= ? ")){
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM Gare WHERE laCommune= ?")){
 			st.setString(1, id);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
@@ -124,7 +124,7 @@ public class CommuneDAO extends DAO<Commune> {
 			while(rs.next()){
 				int idCommune = rs.getInt("idCommune");
 				String nomCommune = rs.getString("nomCommune");
-				result.add(new Commune(idCommune, nomCommune));
+				//result.add(new Commune(idCommune, nomCommune));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

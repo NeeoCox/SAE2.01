@@ -24,7 +24,7 @@ public class Commune {
 	 */
 	private ArrayList<Gare> listeGare;
 	
-	private int année;
+	private int annee;
 
 	private float tauxInflation;
 
@@ -55,7 +55,7 @@ public class Commune {
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
-		this.année = annee;
+		this.annee = annee;
 		this.nbMaison = nbMaison;
 		this.nbAppart = nbAppart;
 		this.prixM2Moyen = prixM2Moyen;
@@ -83,7 +83,7 @@ public class Commune {
 		if(listeVoisine == null) throw new IllegalArgumentException("Liste voisine null");
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
-		this.année = annee;
+		this.annee = annee;
 		this.nbMaison = nbMaison;
 		this.nbAppart = nbAppart;
 		this.prixM2Moyen = prixM2Moyen;
@@ -128,7 +128,7 @@ public class Commune {
 	 * @return
 	 */
 	public int getAnnee(){
-		return this.année;
+		return this.annee;
 	}
 	public float getTauxInflation(){
 		return this.tauxInflation;
@@ -158,7 +158,7 @@ public class Commune {
 		return this.population;
 	}
 	public void setAnnee(int annee){
-		this.année = annee;
+		this.annee = annee;
 	}
 	public void setTauxInflation(float taux){
 		this.tauxInflation = taux;

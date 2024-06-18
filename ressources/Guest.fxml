@@ -22,8 +22,8 @@
                                 <Font size="14.0" />
                             </font>
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Contact" />
-                                <MenuItem mnemonicParsing="false" text="Actualités" />
+                                <MenuItem onAction="#versPageContact" mnemonicParsing="false" text="Contact"/>
+                                <MenuItem onAction="#versPageActu" mnemonicParsing="false" text="Actualités" />
                             </items>
                         </MenuButton>
                         <Button fx:id="exporter" mnemonicParsing="false" onAction="#export" prefHeight="34.0" prefWidth="85.0" text="Exporter" />
@@ -40,8 +40,6 @@
          <top>
                 <GridPane alignment="CENTER" hgap="20" prefHeight="17.0" prefWidth="845.0" vgap="10" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" />
-                        <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />

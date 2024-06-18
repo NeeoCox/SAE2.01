@@ -22,8 +22,8 @@
                                 <Font size="14.0" />
                             </font>
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Contact" />
-                                <MenuItem mnemonicParsing="false" text="Actualités" />
+                                <MenuItem onAction="#versPageContact" mnemonicParsing="false" text="Contact"/>
+                                <MenuItem onAction="#versPageActu" mnemonicParsing="false" text="Actualités" />
                             </items>
                         </MenuButton>
                         <Button fx:id="exporter" mnemonicParsing="false" onAction="#export" prefHeight="34.0" prefWidth="85.0" text="Exporter" />
@@ -46,14 +46,12 @@
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />
-                        <ColumnConstraints hgrow="ALWAYS" />
-                        <ColumnConstraints hgrow="ALWAYS" />
                     </columnConstraints>
                     <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Habitation" GridPane.columnIndex="0" />
-                        <Label alignment="CENTER" text="Nb Habitant" GridPane.columnIndex="1" />
-                        <Label alignment="CENTER" text="Transport" GridPane.columnIndex="2" />
-                        <Label alignment="CENTER" text="Nom de la ville" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Nom de la ville" GridPane.columnIndex="0" />
+                        <Label alignment="CENTER" text="Année" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" text="Nb Habitant" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" text="Transport" GridPane.columnIndex="3" />
                         <Label alignment="CENTER" text="Budget" GridPane.columnIndex="4" />
                     </children>
                     <rowConstraints>

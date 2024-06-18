@@ -22,7 +22,7 @@ public class DepartementDAO extends DAO<Departement> {
 			st.setString(1, id);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				result.add(new Commune(rs.getInt("idCommune"),rs.getString("nomCommune")));
+				//result.add(new Commune(rs.getInt("idCommune"),rs.getString("nomCommune")));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -54,7 +54,7 @@ public class DepartementDAO extends DAO<Departement> {
 		return listeAeroport(String.valueOf(id));
 	}
 
-		public int create(Departement departement){
+	public int create(Departement departement){
 		int result = -1;
 		String query = "INSERT INTO Departement(idDep,nomDep,investissementCulturel2019) VALUES ('"+departement.getIdDep()+","+departement.getNomDep()+","+departement.getInvesCulturel2019()+"')";
 		try(Connection connect = createConnection();Statement st = connect.createStatement()){

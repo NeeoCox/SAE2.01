@@ -19,7 +19,7 @@
                   </StackPane>
                   <StackPane layoutX="12.0" layoutY="154.0" prefHeight="28.0" prefWidth="236.0">
                      <children>
-                        <PasswordField prefHeight="25.0" prefWidth="233.0" />
+                        <PasswordField fx:id="mdp" prefHeight="25.0" prefWidth="233.0" />
                      </children>
                   </StackPane>
                   <Label layoutX="14.0" layoutY="71.0" prefHeight="28.0" prefWidth="131.0" text="Adresse électronique" />
