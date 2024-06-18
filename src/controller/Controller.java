@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
@@ -19,12 +20,12 @@ import model.dao.CommuneDAO;
 import model.data.Commune;
 import model.dao.DAO;
 import javafx.scene.*;
-import javafx.scene.paint.Color;
 /**
  * Controller
  */
 public class Controller {
 
+	private int perm;
 	private static Stage stage;
 	@FXML
 	private Button exporter;
@@ -42,15 +43,18 @@ public class Controller {
 	Label labelIncorrect;
 	@FXML
 	MenuButton menuButton;
+	@FXML
+    private GridPane tableauAdmin;
 
 	CommuneDAO _c;
 
 	public Controller(){
+		this.perm = -1;
 		_c = new CommuneDAO();
 	}
 
 	public void setStage(Stage stage) {
-		this.stage = stage;
+		Controller.stage = stage;
 	}
 
 	public void export(ActionEvent e){
@@ -60,11 +64,27 @@ public class Controller {
 
 
 	public void recherche(ActionEvent e){
-		if(villeAChercher == null ||villeAChercher.getText().length() == 0) throw new IllegalArgumentException("Bar de recherche vide");
+		if(villeAChercher == null || villeAChercher.getText().length() == 0) throw new IllegalArgumentException("Bar de recherche vide");
 		ArrayList<Commune> a = _c.find(villeAChercher.getText().toUpperCase());
-		System.out.println(a.size());
+		System.out.println("Taille recherche ="+a.size());
+		if(a.size() > 0){
+			for (Commune commune : a) {
+				this.addDataRow(this.tableauAdmin, null, null, null, null, null, null);
+			}
+			
+		}
 	}
 
+	private void addDataRow(GridPane tab,String habitation, String nbHabitant, String noteVille, String transport, String lieuNotoire, String nomVille) {
+        int rowIndex = tab.getRowCount();
+        
+        tab.add(new Label(habitation), 0, rowIndex);
+        tab.add(new Label(nbHabitant), 1, rowIndex);
+        tab.add(new Label(noteVille), 2, rowIndex);
+        tab.add(new Label(transport), 3, rowIndex);
+        tab.add(new Label(lieuNotoire), 4, rowIndex);
+        tab.add(new Label(nomVille), 5, rowIndex);
+    }
 
 	public void versPageLogin(ActionEvent e){
 		
@@ -115,11 +135,16 @@ public class Controller {
 		}catch(IOException ex){
 			ex.printStackTrace();
 		}
-		this.stage.setResizable(false);
-		this.stage.setScene(scene);
+		Controller.stage.setResizable(false);
+		Controller.stage.setScene(scene);
 		
-		this.stage.centerOnScreen();
+		Controller.stage.centerOnScreen();
     }
+
+
+
+
+
 
 
 	/**

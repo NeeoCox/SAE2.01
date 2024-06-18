@@ -19,7 +19,7 @@ public class App extends Application {
             Controller c = new Controller();
             System.out.println("setstage");
             c.setStage(stage);
-            URL fxmlLocation = new URL("file:../ressources/Accueil.fxml");
+            URL fxmlLocation = new URL("file:../ressources/Admin.fxml");
             Parent root = FXMLLoader.load(fxmlLocation);
             stage.setTitle("Commune Bretonne");
             stage.setScene(new Scene(root));

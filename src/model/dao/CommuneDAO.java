@@ -35,12 +35,14 @@ public class CommuneDAO extends DAO<Commune> {
 
 	public Departement getDepartement(String idCommune){
 		Departement result = null;
-		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM commune WHERE idCommune = ?")){
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM commune WHERE idCommune = ? JOIN Departement ON idDep = leDepartement")){
 			st.setString(1, idCommune);
 			ResultSet rs = st.executeQuery();
 			while(rs.next()){
-				int id = rs.getInt("leDepartement");
-				result = new Departement(id);
+				int id = rs.getInt("idDep");
+				String nom = rs.getString("nomDep");
+				int inves = rs.getInt("investissementCulturel2019");
+				result = new Departement(id,nom,inves);
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

@@ -10,6 +10,7 @@ public class Departement {
 	private ArrayList<Commune> listeCommunes;
 	private ArrayList<Aeroport> listeAeroport;
 	
+
 	public Departement(int id,String nom,float inves){
 		if(inves < 0) throw new IllegalArgumentException("Investissement negatif");
 		if(id < 0) throw new IllegalArgumentException("ID negatif");

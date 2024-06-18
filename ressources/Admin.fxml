@@ -39,7 +39,7 @@
    <center>
       <BorderPane prefHeight="461.0" prefWidth="832.0" BorderPane.alignment="CENTER">
          <top>
-                <GridPane alignment="CENTER" hgap="20" prefHeight="17.0" prefWidth="845.0" vgap="10" BorderPane.alignment="CENTER">
+                <GridPane fx:id="tableauAdmin" alignment="CENTER" hgap="20" prefHeight="17.0" prefWidth="845.0" vgap="10" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />

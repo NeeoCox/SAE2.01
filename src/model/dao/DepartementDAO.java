@@ -71,8 +71,10 @@ public class DepartementDAO extends DAO<Departement> {
 		try(Connection connect = createConnection(); Statement st = connect.createStatement()){
 			ResultSet rs = st.executeQuery("SELECT * FROM Departement");
 			while(rs.next()){
-				int idCommune = rs.getInt("idDep");
-				result.add(new Departement(idCommune));
+				int idDep = rs.getInt("idDep");
+				String nom = rs.getString("nomDep");
+				int inves = rs.getInt("investissementCulturel2019");
+				result.add(new Departement(idDep,nom,inves));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
