@@ -4,14 +4,22 @@ package model.data;
  * Gare
  */
 public class Gare {
-	/** le code de la gare */
+	/** the id of the train station */
 	private int codeGare;
-	/** le nom de la gare */
+	/** the name of the train station */
 	private String nomGare;
-	/** le  */
+	/** true if the train station is used to transport marchandise  */
 	private boolean estFret;
+	/** true if the train station is used to transport people */
 	private boolean estVoyageur;
 
+	/**
+	 * 
+	 * @param codeGare
+	 * @param nomGare
+	 * @param estFret
+	 * @param estVoyageur
+	 */
 	public Gare(int codeGare, String nomGare, boolean estFret, boolean estVoyageur){
 		if(codeGare <0) throw new IllegalArgumentException("Code Gare negatif");
 		if(nomGare == null) throw new IllegalArgumentException("Nom null");
@@ -24,7 +32,7 @@ public class Gare {
 
 
 	/**
-	 * Getter de codeGare
+	 * used to get the train station's id
 	 * @return codeGare (int)
 	 */
 	public int getCodeGare() {
@@ -32,7 +40,7 @@ public class Gare {
 	}
 	
 	/**
-	 * Getter de nomGare
+	 * used to get the train station's name
 	 * @return nomGare (String)
 	 */
 	public String getNomGare() {
@@ -40,7 +48,7 @@ public class Gare {
 	}
 	
 	/**
-	 * Getter de estFret
+	 * used to get if the train station is used for marchandise
 	 * @return estFret (boolean)
 	 */
 	public boolean getEstFret(){
@@ -48,7 +56,7 @@ public class Gare {
 	}
 
 	/**
-	 * Getter de estVoyageur
+	 * used to get if the train station is used for transporting people
 	 * @return estVoyageur (boolean)
 	 */
 	public boolean getEstVoyageur(){
@@ -57,8 +65,8 @@ public class Gare {
 
 
 	/**
-	 * Setter de codeGare 
-	 * @param codeGare le code de la gare
+	 * this method is used to set the id of the train station 
+	 * @param codeGare the train station's id
 	 */
 	public void setCodeGare(int codeGare) {
 		if(codeGare <0) throw new IllegalArgumentException("Code Gare negatif");
@@ -68,29 +76,34 @@ public class Gare {
 	}
 	
 	/**
-	 * Setter de nomGare
-	 * @param nomGare le nom de la gare
+	 * this method is used to set the name of the train station
+	 * @param nomGare the train station's name
 	 */
 	public void setNomGare(String nomGare) {
 		this.nomGare = nomGare;
 	}
 
 	/**
-	 * Setter de estFret
-	 * @param estFret vrai si la gare accueil des frets ; faux sinon
+	 * this method is used to set if the train station is used to transport marchandise
+	 * @param estFret true if the train station is used for marchandise; else false
 	 */
 	public void setEstFret(boolean estFret) {
 		this.estFret = estFret;
 	}
 
 	/**
-	 * Setter de estVoyageur
-	 * @param estVoyageur vrai si la gare accueil des voyageurs ; faux sinon
+	 * this method is used to set if the train staion is used to transport people
+	 * @param estVoyageur true if used to transport people; else false
 	 */
 	public void setEstVoyageur(boolean estVoyageur) {
 		this.estVoyageur = estVoyageur;
 	}
 
+	/**
+	 * this method is used to check if a train station is in a list within a commune
+	 * @param c, the commune we wanna check if the train station is in
+	 * @return, true if it's in the commune; else false
+	 */
 	public boolean communeGare(Commune c){
 		boolean ret = false;
 		if(c == null){throw new IllegalArgumentException("la commune ne doit pas etre null");}
