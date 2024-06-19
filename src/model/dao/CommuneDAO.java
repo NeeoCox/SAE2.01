@@ -28,9 +28,6 @@ public class CommuneDAO extends DAO<Commune> {
 		}
 		return result;
 	}
-<<<<<<< HEAD
-	
-=======
 
 	
 
@@ -55,7 +52,6 @@ public class CommuneDAO extends DAO<Commune> {
 		return getDepartement(String.valueOf(idCommune));
 	}
 
->>>>>>> 265b6c88ffb381d2cd660959b92990caac081c46
 	public ArrayList<Integer> setAnnee(String id){
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM donneesannuelles WHERE laCommune= ? ")){

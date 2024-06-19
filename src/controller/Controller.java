@@ -5,14 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import model.dao.*;
-import model.data.*;
-=======
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
->>>>>>> 265b6c88ffb381d2cd660959b92990caac081c46
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +19,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
 import model.dao.CommuneDAO;
-import model.data.Aeroport;
 import model.data.Commune;
 import model.data.Gare;
 import model.dao.DAO;
@@ -35,8 +29,10 @@ import javafx.scene.*;
  */
 public class Controller {
 
+	private int perm;
 	private static Stage stage;
-	private ArrayList<Aeroport> listeAeroport;
+	private List<Commune> communes;
+	private ArrayList<Gare> gares;
 	@FXML
 	private Button exporter;
 	@FXML
@@ -53,6 +49,11 @@ public class Controller {
 	Label labelIncorrect;
 	@FXML
 	MenuButton menuButton;
+	@FXML
+    private GridPane tableauAdmin;
+	boolean modificationEnCours;
+	List<TextField> tableauA;
+	List<Button> buttonDel;
 
 	CommuneDAO _c;
 	GareDAO _g;
@@ -67,12 +68,12 @@ public class Controller {
 	}
 
 	public void setStage(Stage stage) {
-		this.stage = stage;
+		Controller.stage = stage;
 	}
 
 	public void export(ActionEvent e){
 		System.out.println("exporter");
-		this.export("Donnée_Commune.csv");
+		// this.export();
 	}
 
 
@@ -200,11 +201,10 @@ public class Controller {
 
 
 	public void versPageLogin(ActionEvent e){
-
+		
 		System.out.println("login");
 		this.changerDePage("file:../ressources/Login.fxml");
 
-		stage.setResizable(false);
 	}
 
 	public void connecter(ActionEvent ev){
@@ -219,55 +219,44 @@ public class Controller {
 			this.versPageGuest(ev);
 		System.out.println(mail.getText());
 		System.out.println(mdp.getText());
+	}
 
-		stage.setResizable(true);
+	private void setPerm(String mail, String passwd){
+		if(mail.equals("root") && passwd.equals("root")) this.perm = 1;
 	}
 
 	public void versPageAccueil(ActionEvent ev){
 		System.out.println("accueil");
 		this.changerDePage("file:../ressources/Accueil.fxml");
-		menuButton.setText("Accueil");
-		stage.setResizable(true);
 	}
 
-	public void versPageCreationDeCompte(ActionEvent ev){
+	public void versPageCreation(ActionEvent ev){
 		System.out.println("creation");
 		this.changerDePage("file:../ressources/Creation.fxml");
-		stage.setResizable(true);
 	}
-	
+
+	public void versPageAdmin(ActionEvent ev){
+		System.out.println("admin");
+		this.changerDePage("file:../ressources/Admin.fxml");
+	}
+
+	public void versPageGuest(ActionEvent ev){
+		System.out.println("admin");
+		this.changerDePage("file:../ressources/Guest.fxml");
+	}
 
 	public void versPageContact(ActionEvent ev){
 		System.out.println("contact");
 		this.changerDePage("file:../ressources/Contact.fxml");
-		menuButton.setText("Contact");
-		stage.setResizable(true);
 	}
 
 	public void versPageActu(ActionEvent ev){
 		System.out.println("actu");
 		this.changerDePage("file:../ressources/Actualite.fxml");
-		menuButton.setText("Actualité");
-		stage.setResizable(true);
 
 	}
 
 	private void changerDePage(String url) {
-<<<<<<< HEAD
-		Scene scene = null;
-		try{
-			Parent root = FXMLLoader.load(new URL(url));
-			scene = new Scene(root);
-			
-		}catch(IOException ex){
-			ex.printStackTrace();
-		}
-		this.stage.setScene(scene);
-		
-		this.stage.centerOnScreen();
-    }
-
-=======
 		try {
 			FXMLLoader loader = new FXMLLoader(new URL(url));
 			Parent root = loader.load();
@@ -278,7 +267,6 @@ public class Controller {
 			ex.printStackTrace();
 		}
 	}
->>>>>>> 265b6c88ffb381d2cd660959b92990caac081c46
 
 	/**
 	 * Exporte la base en .csv
@@ -286,11 +274,7 @@ public class Controller {
 	 */
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
-			out.print("cellule1,"); 
-			out.print("cellule2"); 
- 
-			out.flush(); 
-			out.close(); 
+			_c.findAll();
 		
 			
         } catch (IOException e) {
@@ -308,4 +292,38 @@ public class Controller {
 		gridPane.getChildren().addAll(firstRowNodes);
 	}
 
+	private void exportCommune(){
+		String file = "communeData.csv";
+        try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
+            // Write CSV header
+            out.println("(idCommune;nomCommune;annee;taux;nbMaison;nbAppart;prixM2Moyen;prixMoyen;surface;depCulturelleTotal;bugdet;population;listeVoisine;listeGare");
+			this.communes = _c.findAll();
+			String gareList ="";
+
+            for (Commune commune : this.communes) {
+				this.gares = _g.gare(commune.getIdCommune());
+				for(Gare gare : this.gares){
+					gareList = gareList + gare.getCodeGare() + " | ";
+				}
+                out.println(commune.getIdCommune() + ";" +
+							commune.getNomCommune() + ";" +
+							commune.getAnnee() + ";" +
+							commune.getTauxInflation() + ";" +
+							commune.getNbMaison() + ";" +
+							commune.getNbAppart() + ";" +
+							commune.getPrixM2Moyen() + ";" +
+							commune.getPrixMoyen() + ";" +
+							commune.getSurfaceMoy() + ";" +
+							commune.getDepCulturelleTotal() + ";" +
+							commune.getBudgetTotal() + ";" +
+							commune.getPopulation() + ";" +
+							gareList);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+	}
 }
