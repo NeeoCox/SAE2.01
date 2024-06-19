@@ -63,18 +63,19 @@
                     <children>
                         <Label alignment="CENTER" text="Année" GridPane.columnIndex="0" />
                         <Label alignment="CENTER" text="id Commune" GridPane.columnIndex="1" />
-                        <Label alignment="CENTER" text="Nom de la ville" GridPane.columnIndex="2" />
-                        <Label alignment="CENTER" text="population" GridPane.columnIndex="3" />
-                        <Label alignment="CENTER" text="Transport" GridPane.columnIndex="4" />
-                        <Label alignment="CENTER" text="Budget" GridPane.columnIndex="5" />
-                        <Label alignment="CENTER" text="taux d'inflation" GridPane.columnIndex="6" />
-                        <Label alignment="CENTER" text="nb Maison" GridPane.columnIndex="7" />
-                        <Label alignment="CENTER" text="nb Appart" GridPane.columnIndex="8" />
-                        <Label alignment="CENTER" text="prix Moyen" GridPane.columnIndex="9" />
-                        <Label alignment="CENTER" text="prix m2 Moyen" GridPane.columnIndex="10" />
-                        <Label alignment="CENTER" text="surface moyenne" GridPane.columnIndex="11" />
-                        <Label alignment="CENTER" text="depense culturelle" GridPane.columnIndex="12" />
-                        <Label alignment="CENTER" text="Supprimer" GridPane.columnIndex="13" />
+                        <Label alignment="CENTER" text="id département" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" text="Nom de la ville" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" text="population" GridPane.columnIndex="4" />
+                        <Label alignment="CENTER" text="Transport" GridPane.columnIndex="5" />
+                        <Label alignment="CENTER" text="Budget" GridPane.columnIndex="6" />
+                        <Label alignment="CENTER" text="taux d'inflation" GridPane.columnIndex="7" />
+                        <Label alignment="CENTER" text="nb Maison" GridPane.columnIndex="8" />
+                        <Label alignment="CENTER" text="nb Appart" GridPane.columnIndex="9" />
+                        <Label alignment="CENTER" text="prix Moyen" GridPane.columnIndex="10" />
+                        <Label alignment="CENTER" text="prix m2 Moyen" GridPane.columnIndex="11" />
+                        <Label alignment="CENTER" text="surface moyenne" GridPane.columnIndex="12" />
+                        <Label alignment="CENTER" text="depense culturelle" GridPane.columnIndex="13" />
+                        <Label alignment="CENTER" text="Supprimer" GridPane.columnIndex="14" />
                     </children>
                     <rowConstraints>
                         <RowConstraints />

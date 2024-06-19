@@ -55,7 +55,7 @@ public class Commune {
 
 	private float budgetTotal;
 
-	private float population;
+	private int population;
 
 	/**
 	 * * this method is used to set all the attributs/create depending on the parameters, it's the first contructor
@@ -72,7 +72,7 @@ public class Commune {
 	 * @param bugdet, the total budget
 	 * @param population, the total population
 	 */
-	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population){
+	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, int population){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
 		if(nomCommune == null) throw new IllegalArgumentException("Nom null");
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
@@ -108,7 +108,7 @@ public class Commune {
 	 * @param bugdet, the total budget
 	 * @param population, the total population
 	 */
-	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
+	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, int population,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
 		if(nomCommune == null) throw new IllegalArgumentException("Nom null");
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");

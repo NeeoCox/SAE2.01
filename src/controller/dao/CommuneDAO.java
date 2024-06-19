@@ -10,10 +10,11 @@ import java.util.List;
 
 import model.data.Commune;
 import model.data.Departement;
-import model.data.Gare;
+import model.dao.GareDAO;
 
 
 public class CommuneDAO extends DAO<Commune> {
+	private GareDAO _g = new GareDAO();
 
 	public List<Commune> findAll(){
 		ArrayList<Commune> result = new ArrayList<Commune>();
@@ -53,7 +54,7 @@ public class CommuneDAO extends DAO<Commune> {
 		return getDepartement(String.valueOf(idCommune));
 	}
 
-	public ArrayList<Integer> setAnnee(String id){
+	public ArrayList<Integer> getAnnee(String id){
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM donneesannuelles WHERE laCommune= ? ")){
 			st.setString(1, id);
@@ -62,53 +63,75 @@ public class CommuneDAO extends DAO<Commune> {
 				result.add(rs.getInt("lAnnee"));
 			}
 		}catch(SQLException e){
-
+			e.printStackTrace();
 		}
 		return result;
 	}
 
-	public ArrayList<Integer> setAnnee(int id){
-		return setAnnee(String.valueOf(id));
+	public ArrayList<Integer> getAnnee(int id){
+		return getAnnee(String.valueOf(id));
 	}
+
 
 	public ArrayList<Commune> voisine(String id){
 		ArrayList<Commune> result = new ArrayList<Commune>();
-		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM voisinage JOIN Commune ON communeVoisine = idCommune WHERE commune= ?  ")){
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM voisinage JOIN Commune ON communeVoisine = idCommune JOIN donneesannuelles ON laCommune = idCommune WHERE commune= ?  ")){
 			st.setString(1, id);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				//result.add(new Commune(rs.getInt("communeVoisine"),rs.getString("nomCommune"),rs.getInt("")));
+				result.add(new Commune(rs.getInt("communeVoisine"),rs.getString("nomCommune"),rs.getInt("lAnnee"),rs.getFloat("tauxInflation"),rs.getInt("nbMaison"),rs.getInt("nbAppart"),rs.getFloat("prixM2Moyen"),rs.getFloat("prixMoyen"),rs.getFloat("SurfaceMoy"),rs.getFloat("depensesCulturellesTotales"),rs.getFloat("budgetTotal"),rs.getInt("population")));
 			}
 		}catch(SQLException e){
 
 		}
 		return result;
 	}
-	public ArrayList<Integer> voisine(int id){
-		return setAnnee(String.valueOf(id));
+	public ArrayList<Commune> voisine(int id){
+		return voisine(String.valueOf(id));
 	}
-
 	
-	
-
-	
-	public int create(Commune commune){
+	public int create(Commune commune, Departement departement) {
 		int result = -1;
-		String query = "INSERT INTO Commune() VALUES ('"+commune.getIdCommune()+","+commune.getNomCommune()+","+this.getDepartement(String.valueOf(commune.getIdCommune())).getIdDep()+"')";
-		try(Connection connect = createConnection();Statement st = connect.createStatement()){
-			result = st.executeUpdate(query);
-		}catch(SQLException e){
+	
+		// Insert into Commune table
+		String queryCommune = "INSERT INTO Commune(idCommune, nomCommune, leDepartement) VALUES (?, ?, ?)";
+		try (Connection connect = createConnection();
+			 PreparedStatement psCommune = connect.prepareStatement(queryCommune)) {
+	
+			psCommune.setInt(1, commune.getIdCommune());
+			psCommune.setString(2, commune.getNomCommune());
+			psCommune.setInt(3, departement.getIdDep());
+	
+			result = psCommune.executeUpdate();
+	
+			// Get the generated ID if needed
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		String queryDA ="INSERT INTO donneesannuelles (lAnnee,laCommune,nbMaison,nbAppart,prixMoyen,prixM2Moyen,SurfaceMoy,depensesCulturellesTotales,budgetTotal,population)";
-		queryDA +=" VALUES ("+commune.getAnnee()+", "+commune.getIdCommune()+", "+commune.getNbMaison()+", "+commune.getNbAppart()+", "+commune.getPrixMoyen()+", "+commune.getPrixM2Moyen()+", "+commune.getSurfaceMoy()+", "+commune.getDepCulturelleTotal()+", "+commune.getBudgetTotal()+", "+commune.getPopulation()+")";
-		try(Connection connect = createConnection();Statement st = connect.createStatement()){
-			result = st.executeUpdate(queryDA);
-		}catch(SQLException e){
+	
+		// Insert into DonneesAnnuelles table
+		String queryDA = "INSERT INTO DonneesAnnuelles(lAnnee, laCommune, nbMaison, nbAppart, prixMoyen, prixM2Moyen, SurfaceMoy, depensesCulturellesTotales, budgetTotal, population) " +
+				"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try (Connection connect = createConnection();
+			 PreparedStatement psDA = connect.prepareStatement(queryDA)) {
+	
+			psDA.setInt(1, commune.getAnnee());
+			psDA.setInt(2, commune.getIdCommune());
+			psDA.setInt(3, commune.getNbMaison());
+			psDA.setInt(4, commune.getNbAppart());
+			psDA.setFloat(5, commune.getPrixMoyen());
+			psDA.setFloat(6, commune.getPrixM2Moyen());
+			psDA.setFloat(7, commune.getSurfaceMoy());
+			psDA.setFloat(8, commune.getDepCulturelleTotal());
+			psDA.setFloat(9, commune.getBudgetTotal());
+			psDA.setInt(10, commune.getPopulation());
+	
+			result = psDA.executeUpdate();
+	
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+	
 		return result;
 	}
 	
@@ -164,22 +187,27 @@ public class CommuneDAO extends DAO<Commune> {
 
 	public int delete(Commune commune){
 		int result = -1;
-		String queryDA = "DELETE FROM donneesannuelles WHERE idCommune ='"+commune.getIdCommune()+"'";
+		_g.delete(commune);
+		String queryV = "DELETE FROM voisinage WHERE commune ='"+commune.getIdCommune()+"'";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(queryV);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		String queryV2 = "DELETE FROM voisinage WHERE communeVoisine ='"+commune.getIdCommune()+"'";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(queryV2);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		String queryDA = "DELETE FROM donneesannuelles WHERE laCommune ='"+commune.getIdCommune()+"' AND lAnnee='"+commune.getAnnee()+"'";
 		try(Connection connect = createConnection();Statement st = connect.createStatement()){
 			result = st.executeUpdate(queryDA);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		String query = "DELETE FROM commune WHERE idCommune ='"+commune.getIdCommune()+"'";
-		try(Connection connect = createConnection();Statement st = connect.createStatement()){
-			result = st.executeUpdate(query);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-
-
-
-
 		return result;
 	}
 	
