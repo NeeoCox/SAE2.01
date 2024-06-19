@@ -66,6 +66,22 @@ public class Departement {
 		this.listeCommunes = communes;
 		this.listeAeroport = aeroports;
 	}
+
+	/**
+	 * this method is used to create or set all the attributs of the class, the first contructor
+	 * @param id, the departement's id
+	 * @param nom, the departement's name
+	 * @param inves, the departement's cultural investment
+	 */
+	public Departement(int id){
+
+		if(id < 0) throw new IllegalArgumentException("ID negatif");
+		this.idDep = id;
+		this.nomDep = "";
+		this.invesCulturel2019 = 0f;
+		this.listeCommunes = new ArrayList<Commune>();
+		this.listeAeroport = new ArrayList<Aeroport>();
+	}
 	/**
 	 * this method is used to get the id of the departement
 	 * @return, an int/ departement's id

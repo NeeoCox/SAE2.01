@@ -72,11 +72,11 @@ public class CommuneDAO extends DAO<Commune> {
 
 	public ArrayList<Commune> voisine(String id){
 		ArrayList<Commune> result = new ArrayList<Commune>();
-		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM voisinage JOIN Commune ON communeVoisine = idCommune WHERE commune= ?  ")){
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM voisinage JOIN Commune ON communeVoisine = idCommune JOIN donneesannuelles ON laCommune = idCommune WHERE commune= ?  ")){
 			st.setString(1, id);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				//result.add(new Commune(rs.getInt("communeVoisine"),rs.getString("nomCommune"),rs.getInt("")));
+				result.add(new Commune(rs.getInt("communeVoisine"),rs.getString("nomCommune"),rs.getInt("lAnnee"),rs.getFloat("tauxInflation"),rs.getInt("nbMaison"),rs.getInt("nbAppart"),rs.getFloat("prixM2Moyen"),rs.getFloat("prixMoyen"),rs.getFloat("SurfaceMoy"),rs.getFloat("depensesCulturellesTotales"),rs.getFloat("budgetTotal"),rs.getInt("population")));
 			}
 		}catch(SQLException e){
 
@@ -91,16 +91,16 @@ public class CommuneDAO extends DAO<Commune> {
 	
 
 	
-	public int create(Commune commune){
+	public int create(Commune commune,Departement departement){
 		int result = -1;
-		String query = "INSERT INTO Commune() VALUES ('"+commune.getIdCommune()+","+commune.getNomCommune()+","+this.getDepartement(String.valueOf(commune.getIdCommune())).getIdDep()+"')";
+		String query = "INSERT INTO Commune(idCommune,nomCommune,leDepartement) VALUES ('"+commune.getIdCommune()+","+commune.getNomCommune()+","+departement.getIdDep()+"')";
 		try(Connection connect = createConnection();Statement st = connect.createStatement()){
 			result = st.executeUpdate(query);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 
-		String queryDA ="INSERT INTO donneesannuelles (lAnnee,laCommune,nbMaison,nbAppart,prixMoyen,prixM2Moyen,SurfaceMoy,depensesCulturellesTotales,budgetTotal,population)";
+		String queryDA ="INSERT INTO donneesannuelles()";
 		queryDA +=" VALUES ("+commune.getAnnee()+", "+commune.getIdCommune()+", "+commune.getNbMaison()+", "+commune.getNbAppart()+", "+commune.getPrixMoyen()+", "+commune.getPrixM2Moyen()+", "+commune.getSurfaceMoy()+", "+commune.getDepCulturelleTotal()+", "+commune.getBudgetTotal()+", "+commune.getPopulation()+")";
 		try(Connection connect = createConnection();Statement st = connect.createStatement()){
 			result = st.executeUpdate(queryDA);

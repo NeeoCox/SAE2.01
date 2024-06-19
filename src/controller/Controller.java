@@ -20,8 +20,10 @@ import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
 import model.dao.CommuneDAO;
 import model.data.Commune;
+import model.data.Departement;
 import model.data.Gare;
 import model.dao.DAO;
+import model.dao.DepartementDAO;
 import model.dao.GareDAO;
 import javafx.scene.*;
 /**
@@ -55,6 +57,7 @@ public class Controller {
 
 	CommuneDAO _c;
 	GareDAO _g;
+	DepartementDAO _d;
 
 	public Controller(){
 		this.perm = -1;
@@ -79,7 +82,7 @@ public class Controller {
 		
 		System.out.println("recherche");
 		clear(tableauAdmin);
-		String[] header = {"Ann\u00e9e","id Commune","Nom","Population","Transport","Budget","Taux d'inflation","Nb maison","Nb Appart","prix moyen","prix m2 moyen","surface moyenne","depense culturelle"};
+		String[] header = {"Ann\u00e9e","id Commune","id Departement","Nom","Population","Transport","Budget","Taux d'inflation","Nb maison","Nb Appart","prix moyen","prix m2 moyen","surface moyenne","depense culturelle"};
 		this.addDataRow(tableauAdmin,true, header);
 		if(villeAChercher == null || villeAChercher.getText().length() == 0) throw new IllegalArgumentException("Bar de recherche vide");
 		ArrayList<Commune> a = _c.find(villeAChercher.getText().toUpperCase());
@@ -102,7 +105,7 @@ public class Controller {
 
 				
 				if(this.tableauAdmin != null){
-					String[] tab = {String.valueOf(commune.getAnnee()), String.valueOf(commune.getIdCommune()), String.valueOf(commune.getNomCommune()), String.valueOf(commune.getPopulation()),trans,String.valueOf(commune.getBudgetTotal()), String.valueOf(commune.getTauxInflation()),String.valueOf(commune.getNbMaison()),String.valueOf(commune.getNbAppart()),String.valueOf(commune.getPrixMoyen()),String.valueOf(commune.getPrixM2Moyen()),String.valueOf(commune.getSurfaceMoy()),String.valueOf(commune.getDepCulturelleTotal())};
+					String[] tab = {String.valueOf(commune.getAnnee()), String.valueOf(commune.getIdCommune()),String.valueOf(_c.getDepartement(commune.getIdCommune()).getIdDep()), String.valueOf(commune.getNomCommune()), String.valueOf(commune.getPopulation()),trans,String.valueOf(commune.getBudgetTotal()), String.valueOf(commune.getTauxInflation()),String.valueOf(commune.getNbMaison()),String.valueOf(commune.getNbAppart()),String.valueOf(commune.getPrixMoyen()),String.valueOf(commune.getPrixM2Moyen()),String.valueOf(commune.getSurfaceMoy()),String.valueOf(commune.getDepCulturelleTotal())};
 					this.addDataRow(this.tableauAdmin,tab);
 					
 					
@@ -123,17 +126,19 @@ public class Controller {
 	public void modifier(ActionEvent ev) {
         System.out.println("modifier" + this.modificationEnCours);
 
-        for (int i = 0; i < tableauA.size(); i += 13) {
+        for (int i = 0; i < tableauA.size(); i += 15) {
             if (modificationEnCours) {
                 boolean filled = true;
-                for (int j = i; j < i + 13; j++) {
+                for (int j = i; j < i + 1; j++) {
                     if (tableauA.get(j).getText().equals("")) filled = false;
                 }
                 if (filled) {
-
-                    if (i == tableauA.size() - 13) {
-                        // _c.create(this.createNewFullCommune(i));
-                        System.out.println("create");
+					System.out.println("i="+i+" i ==" +(i == tableauA.size() - 15));
+                    if (i == tableauA.size() - 15) {
+						Commune c = this.createNewFullCommune(i);
+						Departement d = new Departement(i);
+                        System.out.println("create"+c.getIdCommune());
+                        _c.create(c,d);
                     } else {
                         // _c.update(this.createNewFullCommune(i));
                         System.out.println("update");
@@ -146,17 +151,25 @@ public class Controller {
             final int BUTTON_INDEX = j;
             buttonDel.get(j).setOnAction(event -> {
                 System.out.println(buttonDel.get(BUTTON_INDEX).getText() + " was clicked! " + BUTTON_INDEX);
+				
                 if (BUTTON_INDEX == buttonDel.size() - 1) {
-                    _c.create(this.createNewFullCommune(BUTTON_INDEX * 13));
+					Departement d = new Departement(BUTTON_INDEX*15+2);
+                    _c.create(this.createNewFullCommune(BUTTON_INDEX * 15),d);
                 } else {
-                    _c.delete(this.createNewFullCommune(BUTTON_INDEX * 13));
+                    _c.delete(this.createNewFullCommune(BUTTON_INDEX * 15));
                 }
             });
         }
 
         tableauA.clear();
-        this.modificationEnCours = !this.modificationEnCours;
-        this.recherche(ev);
+		try{
+			this.recherche(ev);
+			this.modificationEnCours = !this.modificationEnCours;
+		}catch(IllegalArgumentException e){
+			e.printStackTrace();
+		}
+        
+        
     }
 
 	private Commune createNewFullCommune(int i){
@@ -180,7 +193,7 @@ public class Controller {
 				tab.add(t, i, rowIndex);
 			}
 			Button b = new Button("Delete");
-			tab.add(b, 13, rowIndex);
+			tab.add(b, 14, rowIndex);
 			buttonDel.add(b);
 		}else{
 			buttonDel.clear();
