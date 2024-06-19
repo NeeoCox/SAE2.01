@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.dao.DAO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,10 +29,9 @@ public class App extends Application {
 
 		    stage.centerOnScreen();
 
-            stage.setMinWidth(798);
-		    stage.setMinHeight(425);
 
             stage.show();
+
 
         } catch (IOException e) {
             System.out.println("Erreur");

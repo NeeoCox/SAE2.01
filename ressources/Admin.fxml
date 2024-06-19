@@ -30,7 +30,7 @@
                         <TextField fx:id="villeAChercher" prefHeight="34.0" prefWidth="386.0" promptText="Ville à rechercher" HBox.hgrow="ALWAYS" />
                         <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="37.0" prefWidth="82.0" text="Recherche" />
                         <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="37.0" prefWidth="89.0" text="Connexion" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="73.0" text="Modifier" />
+                        <Button onAction="#modifier" mnemonicParsing="false" prefHeight="35.0" prefWidth="73.0" text="Modifier" />
                     </children>
                 </HBox>
             </items>
@@ -46,13 +46,31 @@
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />
                         <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
                     </columnConstraints>
                     <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Nom de la ville" GridPane.columnIndex="0" />
-                        <Label alignment="CENTER" text="Année" GridPane.columnIndex="1" />
-                        <Label alignment="CENTER" text="Nb Habitant" GridPane.columnIndex="2" />
-                        <Label alignment="CENTER" text="Transport" GridPane.columnIndex="3" />
-                        <Label alignment="CENTER" text="Budget" GridPane.columnIndex="4" />
+                        <Label alignment="CENTER" text="Année" GridPane.columnIndex="0" />
+                        <Label alignment="CENTER" text="id Commune" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" text="Nom de la ville" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" text="population" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" text="Transport" GridPane.columnIndex="4" />
+                        <Label alignment="CENTER" text="Budget" GridPane.columnIndex="5" />
+                        <Label alignment="CENTER" text="taux d'inflation" GridPane.columnIndex="6" />
+                        <Label alignment="CENTER" text="nb Maison" GridPane.columnIndex="7" />
+                        <Label alignment="CENTER" text="nb Appart" GridPane.columnIndex="8" />
+                        <Label alignment="CENTER" text="prix Moyen" GridPane.columnIndex="9" />
+                        <Label alignment="CENTER" text="prix m2 Moyen" GridPane.columnIndex="10" />
+                        <Label alignment="CENTER" text="surface moyenne" GridPane.columnIndex="11" />
+                        <Label alignment="CENTER" text="depense culturelle" GridPane.columnIndex="12" />
+                        <Label alignment="CENTER" text="Supprimer" GridPane.columnIndex="13" />
                     </children>
                     <rowConstraints>
                         <RowConstraints />

@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,9 +33,9 @@ public class GareDAO extends DAO<Gare> {
 	public List<Gare> research(int codeGare){
 		List<Gare> result = new ArrayList<Gare>();
 		try(Connection connect = createConnection(); Statement st = connect.createStatement()){
-			ResultSet rs = st.executeQuery("SELECT * FROM Gare WHERE codeGare ="+codeGare);
+			ResultSet rs = st.executeQuery("SELECT * FROM Gare WHERE codeGare ="+codeGare); // requête que tu veux faire
 			while(rs.next()){
-				int code = rs.getInt("codeGare");
+				int code = rs.getInt("codeGare"); //type de la colonne et son nom
 				String nomGare = rs.getString("nomGare");
 				boolean estFret = rs.getBoolean("estFret");
 				boolean estVoyageur = rs.getBoolean("estVoyageur");
@@ -71,5 +72,24 @@ public class GareDAO extends DAO<Gare> {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+
+	public ArrayList<Gare> gare(String id){
+		ArrayList<Gare> result = new ArrayList<Gare>();
+		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM Gare WHERE laCommune= ?")){
+			st.setString(1, id);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				result.add(new Gare(rs.getInt("codeGare"),rs.getString("nomGare"),rs.getBoolean("estFret"),rs.getBoolean("estVoyageur")));
+			}
+		}catch(SQLException e){
+
+		}
+		return result;
+	}
+
+	public ArrayList<Gare> gare(int id){
+		return gare(String.valueOf(id));
 	}
 }

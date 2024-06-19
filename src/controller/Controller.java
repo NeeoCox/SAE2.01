@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,9 @@ public class Controller {
 	MenuButton menuButton;
 	@FXML
     private GridPane tableauAdmin;
+	boolean modificationEnCours;
+	List<TextField> tableauA;
+	List<Button> buttonDel;
 
 	CommuneDAO _c;
 	GareDAO _g;
@@ -56,6 +60,9 @@ public class Controller {
 		this.perm = -1;
 		_c = new CommuneDAO();
 		_g = new GareDAO();
+		modificationEnCours = false;
+		tableauA = new ArrayList<TextField>();
+		buttonDel = new ArrayList<Button>();
 	}
 
 	public void setStage(Stage stage) {
@@ -72,13 +79,14 @@ public class Controller {
 		
 		System.out.println("recherche");
 		clear(tableauAdmin);
-		this.addDataRow(tableauAdmin, "Nom de la ville", "Ann\u00e9e", "Nb Habitant", "Transport", "Budget");
+		String[] header = {"Ann\u00e9e","id Commune","Nom","Population","Transport","Budget","Taux d'inflation","Nb maison","Nb Appart","prix moyen","prix m2 moyen","surface moyenne","depense culturelle"};
+		this.addDataRow(tableauAdmin,true, header);
 		if(villeAChercher == null || villeAChercher.getText().length() == 0) throw new IllegalArgumentException("Bar de recherche vide");
 		ArrayList<Commune> a = _c.find(villeAChercher.getText().toUpperCase());
 		System.out.println("Taille recherche ="+a.size());
 		if(a.size() > 0){
-			for (Commune commune : a) {
-				commune.setListeGare(_c.gare(commune.getIdCommune()));
+			for (Commune commune : a) { // créer toutes les lignes
+				commune.setListeGare(_g.gare(commune.getIdCommune()));
 				String trans = "";
 				boolean estFret = false;
 				boolean estVoyageur = false;
@@ -93,21 +101,102 @@ public class Controller {
 				if(estVoyageur) trans += "voyageur";
 
 				
-				if(this.tableauAdmin != null)
-					this.addDataRow(this.tableauAdmin,String.valueOf(commune.getNomCommune()), String.valueOf(commune.getAnnee()), String.valueOf(commune.getPopulation()), trans,String.valueOf(commune.getBudgetTotal()));
+				if(this.tableauAdmin != null){
+					String[] tab = {String.valueOf(commune.getAnnee()), String.valueOf(commune.getIdCommune()), String.valueOf(commune.getNomCommune()), String.valueOf(commune.getPopulation()),trans,String.valueOf(commune.getBudgetTotal()), String.valueOf(commune.getTauxInflation()),String.valueOf(commune.getNbMaison()),String.valueOf(commune.getNbAppart()),String.valueOf(commune.getPrixMoyen()),String.valueOf(commune.getPrixM2Moyen()),String.valueOf(commune.getSurfaceMoy()),String.valueOf(commune.getDepCulturelleTotal())};
+					this.addDataRow(this.tableauAdmin,tab);
+					
+					
+				}
 			}
+			if(this.tableauAdmin != null){ //créer la dernière ligne pour ajouter une commune
+				String[] empty = new String[13];
+				for (int i = 0; i < empty.length ;i++) {
+					empty[i] = "";
+				}
+				this.addDataRow(this.tableauAdmin,empty);
+				
+			}
+
 		}
 	}
 
-	private void addDataRow(GridPane tab,String nomVille, String annee, String nbHabitant, String transport,String budget) {
-        int rowIndex = tab.getRowCount();
-        
-        tab.add(new Label(nomVille), 0, rowIndex);
-        tab.add(new Label(annee), 1, rowIndex);
-        tab.add(new Label(nbHabitant), 2, rowIndex);
-        tab.add(new Label(transport), 3, rowIndex);
-        tab.add(new Label(budget), 4, rowIndex);
+	public void modifier(ActionEvent ev) {
+        System.out.println("modifier" + this.modificationEnCours);
+
+        for (int i = 0; i < tableauA.size(); i += 13) {
+            if (modificationEnCours) {
+                boolean filled = true;
+                for (int j = i; j < i + 13; j++) {
+                    if (tableauA.get(j).getText().equals("")) filled = false;
+                }
+                if (filled) {
+
+                    if (i == tableauA.size() - 13) {
+                        // _c.create(this.createNewFullCommune(i));
+                        System.out.println("create");
+                    } else {
+                        // _c.update(this.createNewFullCommune(i));
+                        System.out.println("update");
+                    }
+                }
+            }
+        }
+
+        for (int j = 0; j < buttonDel.size(); j++) {
+            final int BUTTON_INDEX = j;
+            buttonDel.get(j).setOnAction(event -> {
+                System.out.println(buttonDel.get(BUTTON_INDEX).getText() + " was clicked! " + BUTTON_INDEX);
+                if (BUTTON_INDEX == buttonDel.size() - 1) {
+                    _c.create(this.createNewFullCommune(BUTTON_INDEX * 13));
+                } else {
+                    _c.delete(this.createNewFullCommune(BUTTON_INDEX * 13));
+                }
+            });
+        }
+
+        tableauA.clear();
+        this.modificationEnCours = !this.modificationEnCours;
+        this.recherche(ev);
     }
+
+	private Commune createNewFullCommune(int i){
+		String nom = tableauA.get(i+2).getText();
+		System.out.println(nom);
+		int[] integer = {Integer.parseInt(tableauA.get(i+1).getText()),Integer.parseInt(tableauA.get(i).getText()),Integer.parseInt(tableauA.get(i+7).getText()),Integer.parseInt(tableauA.get(i+8).getText())};
+		System.out.println(Arrays.toString(integer));
+		float[] floats = {Float.parseFloat(tableauA.get(i+6).getText()),Float.parseFloat(tableauA.get(i+9).getText()),Float.parseFloat(tableauA.get(i+10).getText()),Float.parseFloat(tableauA.get(i+11).getText()),Float.parseFloat(tableauA.get(i+12).getText()),Float.parseFloat(tableauA.get(i+5).getText()),Float.parseFloat(tableauA.get(i+3).getText())};
+		System.out.println(Arrays.toString(floats));
+
+		return new Commune(integer[0], nom, integer[1], floats[0], integer[2], integer[3], floats[1], floats[2], floats[3], floats[4], floats[5], floats[6]);
+	}
+
+	private void addDataRow(GridPane tab,boolean header,String[] info) {
+        int rowIndex = tab.getRowCount();
+
+        if(this.modificationEnCours && !header){
+			for (int i = 0; i < info.length; i++) {
+				TextField t = new TextField(info[i]);
+				tableauA.add(t);
+				tab.add(t, i, rowIndex);
+			}
+			Button b = new Button("Delete");
+			tab.add(b, 13, rowIndex);
+			buttonDel.add(b);
+		}else{
+			buttonDel.clear();
+			for (int i = 0; i < info.length; i++) {
+				Label t = new Label(info[i]);
+				tab.add(t, i, rowIndex);
+			}
+		}
+
+
+    }
+
+	private void addDataRow(GridPane tab, String[] info){
+		this.addDataRow(tab, false, info);
+	}
+
 
 	public void versPageLogin(ActionEvent e){
 		
@@ -148,6 +237,7 @@ public class Controller {
 		System.out.println("admin");
 		this.changerDePage("file:../ressources/Admin.fxml");
 	}
+
 	public void versPageGuest(ActionEvent ev){
 		System.out.println("admin");
 		this.changerDePage("file:../ressources/Guest.fxml");
@@ -170,7 +260,6 @@ public class Controller {
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			Controller.stage.setScene(scene);
-			Controller.stage.setResizable(false);
 			Controller.stage.centerOnScreen();
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -179,11 +268,11 @@ public class Controller {
 
 	/**
 	 * Exporte la base en .csv
-	 * @param fileName nom du fichier à exporte
+	 * @param fileName nom du fichier à exporter
 	 */
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
-			
+			_c.findAll();
 		
 			
         } catch (IOException e) {
@@ -192,13 +281,13 @@ public class Controller {
 	}
 
 	private void clear(GridPane gridPane) {
-    
-    List<Node> firstRowNodes = gridPane.getChildren().stream()
-        .filter(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == 0)
-        .collect(Collectors.toList());
-   
-    gridPane.getChildren().clear();
+		List<Node> firstRowNodes = gridPane.getChildren().stream()
+			.filter(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == 0)
+			.collect(Collectors.toList());
+	
+		gridPane.getChildren().clear();
 
-    gridPane.getChildren().addAll(firstRowNodes);
-}
+		gridPane.getChildren().addAll(firstRowNodes);
+	}
+
 }
