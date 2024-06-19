@@ -11,13 +11,7 @@ public class Commune {
 	/**
 	 * this attribut is used to store the commune's id
 	 */
-	/**
-	 * this attribut is used to store the commune's id
-	 */
 	private int idCommune;
-	/**
-	 * this attribut is used to store the commune's name
-	 */
 	/**
 	 * this attribut is used to store the commune's name
 	 */
@@ -25,19 +19,13 @@ public class Commune {
 	/**
 	 * this attribut is used to store every neighbor communes
 	 */
-	/**
-	 * this attribut is used to store every neighbor communes
-	 */
 	private ArrayList<Commune> listeVoisine;
-	/**
-	 * this attribut is used to store every train station located in the commune
-	 */
 	/**
 	 * this attribut is used to store every train station located in the commune
 	 */
 	private ArrayList<Gare> listeGare;
 	
-	private int année;
+	private int annee;
 
 	private float tauxInflation;
 
@@ -58,7 +46,7 @@ public class Commune {
 	private int population;
 
 	/**
-	 * * this method is used to set all the attributs/create depending on the parameters, it's the first contructor
+	 * this method is used to set all the attributs/create depending on the parameters, it's the first contructor
 	 * @param idCommune, the commune's id
 	 * @param nomCommune, the commune's name
 	 * @param annee, the year
@@ -78,7 +66,7 @@ public class Commune {
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
-		this.année = annee;
+		this.annee = annee;
 		this.nbMaison = nbMaison;
 		this.nbAppart = nbAppart;
 		this.prixM2Moyen = prixM2Moyen;
@@ -116,7 +104,7 @@ public class Commune {
 		if(listeVoisine == null) throw new IllegalArgumentException("Liste voisine null");
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
-		this.année = annee;
+		this.annee = annee;
 		this.nbMaison = nbMaison;
 		this.nbAppart = nbAppart;
 		this.prixM2Moyen = prixM2Moyen;
@@ -129,10 +117,7 @@ public class Commune {
 		this.listeVoisine = listeVoisine;
 		this.listeVoisine = listeVoisine;
 	}
-	/**
-	 * this method is used to get the id of the commune
-	 * @return, an int / commune's id
-	 */
+
 	/**
 	 * this method is used to get the id of the commune
 	 * @return, an int / commune's id
@@ -140,10 +125,7 @@ public class Commune {
 	public int getIdCommune() {
 		return idCommune;
 	}
-	/**
-	 * this method is used to get the list of train stations
-	 * @return, an Array/ the list of train station
-	 */
+
 	/**
 	 * this method is used to get the list of train stations
 	 * @return, an Array/ the list of train station
@@ -151,10 +133,7 @@ public class Commune {
 	public ArrayList<Gare> getListeGare() {
 		return listeGare;
 	}
-	/**
-	 * this method is used to get the name of the commune
-	 * @return, a String/ the commune's name
-	 */
+
 	/**
 	 * this method is used to get the name of the commune
 	 * @return, a String/ the commune's name
@@ -162,10 +141,7 @@ public class Commune {
 	public String getNomCommune() {
 		return nomCommune;
 	}
-	/**
-	 * this method is used to get the list of neighbouring communes
-	 * @return, an Array/ list full of commune
-	 */
+
 	/**
 	 * this method is used to get the list of neighbouring communes
 	 * @return, an Array/ list full of commune
@@ -178,7 +154,7 @@ public class Commune {
 	 * @return, an int/ the year
 	 */
 	public int getAnnee(){
-		return this.année;
+		return this.annee;
 	}
 	/**
 	 * this method is used to get the inflation
@@ -238,9 +214,9 @@ public class Commune {
 	}
 	/**
 	 * this method is used to get the population
-	 * @return, a float/ the population
+	 * @return, a int/ the population
 	 */
-	public float getPopulation(){
+	public int getPopulation(){
 		return this.population;
 	}
 	/**
@@ -248,7 +224,7 @@ public class Commune {
 	 * @param annee, the year/ int
 	 */
 	public void setAnnee(int annee){
-		this.année = annee;
+		this.annee = annee;
 	}
 	/**
 	 * this method is used to set the inflation
@@ -308,9 +284,9 @@ public class Commune {
 	}
 	/**
 	 * this method is used to set the population
-	 * @param pop, the population/ float
+	 * @param pop, the population/ int
 	 */
-	public void setPopulation(float pop){
+	public void setPopulation(int pop){
 		this.population = pop;
 	}
 	/**
@@ -376,8 +352,6 @@ public class Commune {
 					ret = true;
 				}
 			}
-		}else{
-			throw new IllegalArgumentException("Cette commune n'est pas dans la liste");
 		}else{
 			throw new IllegalArgumentException("Cette commune n'est pas dans la liste");
 		}

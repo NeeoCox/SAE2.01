@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import controller.model.dao.DAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -230,9 +228,6 @@ public class Controller {
 		}
 	}
 
-	private void removeCommune(){
-			
-	}
 	
 	private void addNewCommune() {
 		int rowIndex = tableauA.size() / 14 - 1; // Calculate the index of the last row
@@ -321,7 +316,6 @@ public class Controller {
 	 */
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
-			_c.findAll();
 			exportCommune();
 			
         } catch (IOException e) {
