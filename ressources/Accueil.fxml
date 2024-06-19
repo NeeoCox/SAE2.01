@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="536" minWidth="383" prefHeight="425.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller" stylesheets="@Accueil.css">
+   <top>
+      <ToolBar prefHeight="75.0" prefWidth="798.0">
+         <items>
+            <HBox spacing="10" alignment="CENTER" HBox.hgrow="ALWAYS">
+               <children>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" text="Menu">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <items>
+                        <MenuItem onAction="#versPageContact" mnemonicParsing="false" text="Contact"/>
+                        <MenuItem onAction="#versPageActu" mnemonicParsing="false" text="Actualités" />
+                     </items>
+                  </MenuButton>
+                  <Button fx:id="exporter" mnemonicParsing="false" onAction="#export" prefHeight="34.0" text="Exporter" />
+                  <TextField fx:id="villeAChercher" prefHeight="34.0" promptText="Ville à rechercher" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" text="Recherche" />
+                  <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" text="Connexion" />
+               </children>
+            </HBox>
+         </items>
+      </ToolBar>
+   </top>
+</BorderPane>

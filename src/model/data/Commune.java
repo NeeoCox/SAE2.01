@@ -2,6 +2,7 @@ package model.data;
 import java.util.ArrayList;
 
 
+
 /**
  * Commune
  */
@@ -10,7 +11,13 @@ public class Commune {
 	/**
 	 * this attribut is used to store the commune's id
 	 */
+	/**
+	 * this attribut is used to store the commune's id
+	 */
 	private int idCommune;
+	/**
+	 * this attribut is used to store the commune's name
+	 */
 	/**
 	 * this attribut is used to store the commune's name
 	 */
@@ -18,7 +25,13 @@ public class Commune {
 	/**
 	 * this attribut is used to store every neighbor communes
 	 */
+	/**
+	 * this attribut is used to store every neighbor communes
+	 */
 	private ArrayList<Commune> listeVoisine;
+	/**
+	 * this attribut is used to store every train station located in the commune
+	 */
 	/**
 	 * this attribut is used to store every train station located in the commune
 	 */
@@ -114,7 +127,12 @@ public class Commune {
 		this.population = population;
 		this.listeGare = listeGare;
 		this.listeVoisine = listeVoisine;
+		this.listeVoisine = listeVoisine;
 	}
+	/**
+	 * this method is used to get the id of the commune
+	 * @return, an int / commune's id
+	 */
 	/**
 	 * this method is used to get the id of the commune
 	 * @return, an int / commune's id
@@ -126,6 +144,10 @@ public class Commune {
 	 * this method is used to get the list of train stations
 	 * @return, an Array/ the list of train station
 	 */
+	/**
+	 * this method is used to get the list of train stations
+	 * @return, an Array/ the list of train station
+	 */
 	public ArrayList<Gare> getListeGare() {
 		return listeGare;
 	}
@@ -133,9 +155,17 @@ public class Commune {
 	 * this method is used to get the name of the commune
 	 * @return, a String/ the commune's name
 	 */
+	/**
+	 * this method is used to get the name of the commune
+	 * @return, a String/ the commune's name
+	 */
 	public String getNomCommune() {
 		return nomCommune;
 	}
+	/**
+	 * this method is used to get the list of neighbouring communes
+	 * @return, an Array/ list full of commune
+	 */
 	/**
 	 * this method is used to get the list of neighbouring communes
 	 * @return, an Array/ list full of commune
@@ -295,6 +325,10 @@ public class Commune {
 	 * this method is used to set the train station array depending of the parameter
 	 * @param listeGare, a list containing all the train stations
 	 */
+	/**
+	 * this method is used to set the train station array depending of the parameter
+	 * @param listeGare, a list containing all the train stations
+	 */
 	public void setListeGare(ArrayList<Gare> listeGare) {
 		if(listeGare == null) throw new IllegalArgumentException("Liste Gare null");
 		this.listeGare = listeGare;
@@ -303,10 +337,18 @@ public class Commune {
 	 * this method is used to set the commune Array depending of the parameter
 	 * @param listeVoisine, a list containing all the neighbours
 	 */
+	/**
+	 * this method is used to set the commune Array depending of the parameter
+	 * @param listeVoisine, a list containing all the neighbours
+	 */
 	public void setListeVoisine(ArrayList<Commune> listeVoisine) {
 		if(listeVoisine == null) throw new IllegalArgumentException("Liste voisine null");
 		this.listeVoisine = listeVoisine;
 	}
+	/**
+	 * this method is used to set the name depending of the parameter
+	 * @param nomCommune, a string representing the commune's name
+	 */
 	/**
 	 * this method is used to set the name depending of the parameter
 	 * @param nomCommune, a string representing the commune's name
@@ -321,6 +363,11 @@ public class Commune {
 	 * @param commu, the other commune
 	 * @return, true if they are neighbours or false if they are not
 	 */
+	/**
+	 * this method is used to check if 2 communes are neighbours using the Array "communeVoisine"
+	 * @param commu, the other commune
+	 * @return, true if they are neighbours or false if they are not
+	 */
 	public boolean estVoisine(Commune commu){
 		boolean ret = false;
 		if (commu != null) {
@@ -329,6 +376,8 @@ public class Commune {
 					ret = true;
 				}
 			}
+		}else{
+			throw new IllegalArgumentException("Cette commune n'est pas dans la liste");
 		}else{
 			throw new IllegalArgumentException("Cette commune n'est pas dans la liste");
 		}
