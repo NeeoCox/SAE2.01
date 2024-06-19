@@ -1,4 +1,4 @@
-package controller.dao;
+package model.dao;
 import model.data.Departement;
 
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package controller.dao;
+package model.dao;
 
 import java.util.ArrayList;
 import java.sql.Connection;
