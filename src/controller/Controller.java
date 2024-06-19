@@ -63,7 +63,7 @@ public class Controller {
 		this.perm = -1;
 		_c = new CommuneDAO();
 		_g = new GareDAO();
-		modificationEnCours = false;
+		modificationEnCours = true;
 		tableauA = new ArrayList<TextField>();
 		buttonDel = new ArrayList<Button>();
 	}
@@ -112,7 +112,7 @@ public class Controller {
 				}
 			}
 			if(this.tableauAdmin != null){ //créer la dernière ligne pour ajouter une commune
-				String[] empty = new String[13];
+				String[] empty = new String[14];
 				for (int i = 0; i < empty.length ;i++) {
 					empty[i] = "";
 				}
@@ -124,10 +124,12 @@ public class Controller {
 	}
 
 	public void modifier(ActionEvent ev) {
-        System.out.println("modifier" + this.modificationEnCours);
+        System.out.println("modifier : " + this.modificationEnCours);
 
-        for (int i = 0; i < tableauA.size(); i += 15) {
-            if (modificationEnCours) {
+		if (modificationEnCours) {
+			for (int i = 0; i < tableauA.size(); i += 15) {
+				System.out.println("for tableaA");
+           
                 boolean filled = true;
                 for (int j = i; j < i + 1; j++) {
                     if (tableauA.get(j).getText().equals("")) filled = false;
@@ -140,7 +142,7 @@ public class Controller {
                         System.out.println("create"+c.getIdCommune());
                         _c.create(c,d);
                     } else {
-                        // _c.update(this.createNewFullCommune(i));
+                        _c.update(this.createNewFullCommune(i));
                         System.out.println("update");
                     }
                 }
@@ -173,38 +175,58 @@ public class Controller {
     }
 
 	private Commune createNewFullCommune(int i){
-		String nom = tableauA.get(i+2).getText();
-		System.out.println(nom);
-		int[] integer = {Integer.parseInt(tableauA.get(i+1).getText()),Integer.parseInt(tableauA.get(i).getText()),Integer.parseInt(tableauA.get(i+7).getText()),Integer.parseInt(tableauA.get(i+8).getText())};
-		System.out.println(Arrays.toString(integer));
-		float[] floats = {Float.parseFloat(tableauA.get(i+6).getText()),Float.parseFloat(tableauA.get(i+9).getText()),Float.parseFloat(tableauA.get(i+10).getText()),Float.parseFloat(tableauA.get(i+11).getText()),Float.parseFloat(tableauA.get(i+12).getText()),Float.parseFloat(tableauA.get(i+5).getText()),Float.parseFloat(tableauA.get(i+3).getText())};
-		System.out.println(Arrays.toString(floats));
+		String nom = tableauA.get(i+3).getText();
+		int[] integeri = {i,i+1,i+2,i+4,i+8,i+9};
+		int[] floatsi = {i+6,i+7,i+10,i+11,i+12,i+13};
+		int[] integer = new int[integeri.length];
+		float[] floats = new float[floatsi.length];
+		for (int j = 0; j < integer.length;j++) {
+			integer[j] = Integer.parseInt(tableauA.get(integeri[j]).getText());
+		}
+		for (int j = 0; j < floats.length;j++) {
+			floats[j] = Integer.parseInt(tableauA.get(floatsi[j]).getText());
+		}
+		
 
-		return new Commune(integer[0], nom, integer[1], floats[0], integer[2], integer[3], floats[1], floats[2], floats[3], floats[4], floats[5], floats[6]);
+		return new Commune(integer[1], nom, integer[0], floats[1], integer[3], integer[4], floats[4], floats[3], floats[5], floats[1], floats[0], integer[3]);
 	}
 
-	private void addDataRow(GridPane tab,boolean header,String[] info) {
-        int rowIndex = tab.getRowCount();
-
-        if(this.modificationEnCours && !header){
+	private void addDataRow(GridPane tab, boolean header, String[] info) {
+		int rowIndex = tab.getRowCount();
+	
+		if (this.modificationEnCours && !header) {
 			for (int i = 0; i < info.length; i++) {
 				TextField t = new TextField(info[i]);
 				tableauA.add(t);
 				tab.add(t, i, rowIndex);
 			}
-			Button b = new Button("Delete");
-			tab.add(b, 14, rowIndex);
-			buttonDel.add(b);
-		}else{
+	
+			if (info.length > 0 && info[0].isEmpty()) { // Check if it's the last empty row for adding a new commune
+				Button addButton = new Button("Add");
+				addButton.setOnAction(event -> addNewCommune());
+				tab.add(addButton, 14, rowIndex);
+			} else {
+				Button b = new Button("Delete");
+				tab.add(b, 14, rowIndex);
+				buttonDel.add(b);
+			}
+		} else {
 			buttonDel.clear();
 			for (int i = 0; i < info.length; i++) {
 				Label t = new Label(info[i]);
 				tab.add(t, i, rowIndex);
 			}
 		}
+	}
 
-
-    }
+	
+	private void addNewCommune() {
+		int rowIndex = tableauA.size() / 14 - 1; // Calculate the index of the last row
+		Commune newCommune = createNewFullCommune(rowIndex * 14);
+		Departement newDepartement = new Departement(newCommune.getIdCommune());
+		_c.create(newCommune, newDepartement);
+		this.recherche(new ActionEvent());
+	}
 
 	private void addDataRow(GridPane tab, String[] info){
 		this.addDataRow(tab, false, info);

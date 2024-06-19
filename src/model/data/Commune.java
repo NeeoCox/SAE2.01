@@ -42,14 +42,14 @@ public class Commune {
 
 	private float budgetTotal;
 
-	private float population;
+	private int population;
 
 	/**
 	 * this method is used to set all the attributs/create depending on the parameters, it's the first contructor
 	 * @param idCommune, the commune's id
 	 * @param nomCommune, the commune's name
 	 */
-	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population){
+	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, int population){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
 		if(nomCommune == null) throw new IllegalArgumentException("Nom null");
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
@@ -75,7 +75,7 @@ public class Commune {
 	 * @param listeVoisine, the list containing all neighbour communes
 	 * @param listeGare, the list containing all the train stations inside the commune
 	 */
-	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, float population,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
+	public Commune(int idCommune, String nomCommune, int annee, float taux, int nbMaison, int nbAppart, float prixM2Moyen, float prixMoyen, float surface, float depCulturelleTotal, float bugdet, int population,ArrayList<Commune> listeVoisine,ArrayList<Gare> listeGare){
 		if(idCommune < 0) throw new IllegalArgumentException("id Negatif");
 		if(nomCommune == null) throw new IllegalArgumentException("Nom null");
 		if(nomCommune.length() == 0) throw new IllegalArgumentException("Nom inexistant");
@@ -154,7 +154,7 @@ public class Commune {
 	public float getBudgetTotal(){
 		return this.budgetTotal;
 	}
-	public float getPopulation(){
+	public int getPopulation(){
 		return this.population;
 	}
 	public void setAnnee(int annee){
@@ -184,7 +184,7 @@ public class Commune {
 	public void setBudgetTotal(float budget){
 		this.budgetTotal = budget;
 	}
-	public void setPopulation(float pop){
+	public void setPopulation(int pop){
 		this.population = pop;
 	}
 	/**

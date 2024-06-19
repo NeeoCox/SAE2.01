@@ -86,28 +86,53 @@ public class CommuneDAO extends DAO<Commune> {
 	public ArrayList<Integer> voisine(int id){
 		return setAnnee(String.valueOf(id));
 	}
-
 	
-	
-
-	
-	public int create(Commune commune,Departement departement){
+	public int create(Commune commune, Departement departement) {
 		int result = -1;
-		String query = "INSERT INTO Commune(idCommune,nomCommune,leDepartement) VALUES ('"+commune.getIdCommune()+","+commune.getNomCommune()+","+departement.getIdDep()+"')";
-		try(Connection connect = createConnection();Statement st = connect.createStatement()){
-			result = st.executeUpdate(query);
-		}catch(SQLException e){
+	
+		// Insert into Commune table
+		String queryCommune = "INSERT INTO Commune(idCommune, nomCommune, leDepartement) VALUES (?, ?, ?)";
+		try (Connection connect = createConnection();
+			 PreparedStatement psCommune = connect.prepareStatement(queryCommune)) {
+	
+			psCommune.setInt(1, commune.getIdCommune());
+			psCommune.setString(2, commune.getNomCommune());
+			psCommune.setInt(3, departement.getIdDep());
+	
+			result = psCommune.executeUpdate();
+	
+			// Get the generated ID if needed
+			ResultSet generatedKeys = psCommune.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				commune.setIdCommune(generatedKeys.getInt(1));
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		String queryDA ="INSERT INTO donneesannuelles()";
-		queryDA +=" VALUES ("+commune.getAnnee()+", "+commune.getIdCommune()+", "+commune.getNbMaison()+", "+commune.getNbAppart()+", "+commune.getPrixMoyen()+", "+commune.getPrixM2Moyen()+", "+commune.getSurfaceMoy()+", "+commune.getDepCulturelleTotal()+", "+commune.getBudgetTotal()+", "+commune.getPopulation()+")";
-		try(Connection connect = createConnection();Statement st = connect.createStatement()){
-			result = st.executeUpdate(queryDA);
-		}catch(SQLException e){
+	
+		// Insert into DonneesAnnuelles table
+		String queryDA = "INSERT INTO DonneesAnnuelles(lAnnee, laCommune, nbMaison, nbAppart, prixMoyen, prixM2Moyen, SurfaceMoy, depensesCulturellesTotales, budgetTotal, population) " +
+				"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try (Connection connect = createConnection();
+			 PreparedStatement psDA = connect.prepareStatement(queryDA)) {
+	
+			psDA.setInt(1, commune.getAnnee());
+			psDA.setInt(2, commune.getIdCommune());
+			psDA.setInt(3, commune.getNbMaison());
+			psDA.setInt(4, commune.getNbAppart());
+			psDA.setFloat(5, commune.getPrixMoyen());
+			psDA.setFloat(6, commune.getPrixM2Moyen());
+			psDA.setFloat(7, commune.getSurfaceMoy());
+			psDA.setFloat(8, commune.getDepCulturelleTotal());
+			psDA.setFloat(9, commune.getBudgetTotal());
+			psDA.setInt(10, commune.getPopulation());
+	
+			result = psDA.executeUpdate();
+	
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+	
 		return result;
 	}
 	
