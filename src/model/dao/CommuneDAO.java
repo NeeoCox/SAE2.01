@@ -30,7 +30,7 @@ public class CommuneDAO extends DAO<Commune> {
 		}
 		return result;
 	}
-
+	
 	public ArrayList<Integer> setAnnee(String id){
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM donneesannuelles WHERE laCommune= ? ")){

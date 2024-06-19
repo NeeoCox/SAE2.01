@@ -18,11 +18,10 @@
                         <Font size="14.0" />
                      </font>
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Contact" />
-                        <MenuItem mnemonicParsing="false" text="Actualités" />
+                        <MenuItem onAction="#versPageLogin" mnemonicParsing="false" text="Accueil" />
+                        <MenuItem onAction="#versPageActu" mnemonicParsing="false" text="Actualités" />
                      </items>
                   </MenuButton>
-                  <Button fx:id="exporter" mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="34.0" text="Exporter" />
                   <TextField fx:id="villeAChercher" prefHeight="34.0" promptText="Ville à rechercher" HBox.hgrow="ALWAYS" />
                   <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" text="Recherche" />
                   <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" text="Connexion" />

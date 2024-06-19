@@ -16,11 +16,15 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            URL fxmlLocation = new URL("file:../ressources/Acceuil.fxml");
+            
+            Controller c = new Controller();
+            System.out.println("setstage");
+            c.setStage(stage);
+            URL fxmlLocation = new URL("file:../ressources/Accueil.fxml");
             Parent root = FXMLLoader.load(fxmlLocation);
-            stage.setTitle("Commune Bretonne");
+            stage.setTitle("SAE commune bretonne");
             stage.setScene(new Scene(root));
-		
+            
             stage.getIcons().add(new Image("file:../img/Logo.png"));
 
 		    stage.centerOnScreen();
