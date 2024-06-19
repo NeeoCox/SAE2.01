@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public abstract class DAO<T> {
 	private static String driver = "com.mysql.cj.jdbc.Driver";
-	private static String url="jdbc:mysql://localhost:3306/commune";
+	private static String url="jdbc:mysql://localhost:3306/sae_104";
 	private static String username = "root";
 	private static String pwd = "root";
 	Connection connect;

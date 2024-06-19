@@ -26,10 +26,7 @@
                         <MenuItem onAction="#versPageActu" mnemonicParsing="false" text="Actualités" />
                      </items>
                   </MenuButton>
-<<<<<<< HEAD
-=======
                   <Button fx:id="exporter" mnemonicParsing="false" onAction="#export" prefHeight="34.0" text="Exporter" />
->>>>>>> 265b6c88ffb381d2cd660959b92990caac081c46
                   <TextField fx:id="villeAChercher" prefHeight="34.0" promptText="Ville à rechercher" HBox.hgrow="ALWAYS" />
                   <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" text="Recherche" />
                   <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" text="Connexion" />

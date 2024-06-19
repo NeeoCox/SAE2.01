@@ -32,6 +32,7 @@ public class Controller {
 	private int perm;
 	private static Stage stage;
 	private List<Commune> communes;
+	private ArrayList<Commune> communesVoisine;
 	private ArrayList<Gare> gares;
 	@FXML
 	private Button exporter;
@@ -73,7 +74,7 @@ public class Controller {
 
 	public void export(ActionEvent e){
 		System.out.println("exporter");
-		// this.export();
+		this.exportCommune();
 	}
 
 
@@ -275,7 +276,7 @@ public class Controller {
 	private void export(String fileName){
 		 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
 			_c.findAll();
-		
+			exportCommune();
 			
         } catch (IOException e) {
             e.printStackTrace();
@@ -296,14 +297,24 @@ public class Controller {
 		String file = "communeData.csv";
         try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
             // Write CSV header
-            out.println("(idCommune;nomCommune;annee;taux;nbMaison;nbAppart;prixM2Moyen;prixMoyen;surface;depCulturelleTotal;bugdet;population;listeVoisine;listeGare");
+            out.println("idCommune;nomCommune;annee;taux;nbMaison;nbAppart;prixM2Moyen;prixMoyen;surface;depCulturelleTotal;bugdet;population;listeVoisine;listeGare");
 			this.communes = _c.findAll();
+			
 			String gareList ="";
+			String comList ="";
 
             for (Commune commune : this.communes) {
+				gareList = "";
+				comList ="";
+
 				this.gares = _g.gare(commune.getIdCommune());
+				this.communesVoisine = commune.getListeVoisine();
+
 				for(Gare gare : this.gares){
 					gareList = gareList + gare.getCodeGare() + " | ";
+				}
+				for(Commune communeV : this.communesVoisine){
+					comList = comList + communeV.getIdCommune()+ " | ";
 				}
                 out.println(commune.getIdCommune() + ";" +
 							commune.getNomCommune() + ";" +
@@ -317,6 +328,7 @@ public class Controller {
 							commune.getDepCulturelleTotal() + ";" +
 							commune.getBudgetTotal() + ";" +
 							commune.getPopulation() + ";" +
+							comList + ";" +
 							gareList);
 
             }

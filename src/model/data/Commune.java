@@ -56,6 +56,7 @@ public class Commune {
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
 		this.annee = annee;
+		this.tauxInflation = taux;
 		this.nbMaison = nbMaison;
 		this.nbAppart = nbAppart;
 		this.prixM2Moyen = prixM2Moyen;
@@ -84,6 +85,7 @@ public class Commune {
 		this.idCommune = idCommune;
 		this.nomCommune = nomCommune;
 		this.annee = annee;
+		this.tauxInflation = taux;
 		this.nbMaison = nbMaison;
 		this.nbAppart = nbAppart;
 		this.prixM2Moyen = prixM2Moyen;
