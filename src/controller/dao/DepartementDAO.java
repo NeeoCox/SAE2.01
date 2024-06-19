@@ -1,4 +1,4 @@
-package model.dao;
+package controller.dao;
 import model.data.Departement;
 
 import java.sql.Connection;
@@ -14,7 +14,7 @@ public class DepartementDAO extends DAO<Departement> {
 	
 
 
-	public ArrayList<Commune> commune(String id){
+	public ArrayList<Commune> listeCommunes(String id){
 		ArrayList<Commune> result = new ArrayList<Commune>();
 		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM Commune WHERE leDepartement = ? ")){
 			st.setString(1, id);
@@ -28,19 +28,19 @@ public class DepartementDAO extends DAO<Departement> {
 		return result;
 	}
 	
-	public ArrayList<Commune> commune(int id){
-		return this.commune(String.valueOf(id));
+	public ArrayList<Commune> listeCommunes(int id){
+		return this.listeCommunes(String.valueOf(id));
 	}
 	
 	
 	
 	
-	public ArrayList<Aeroport> aeroports(String id){
+	public ArrayList<Aeroport> listeAeroport(String id){
 		ArrayList<Aeroport> result = new ArrayList<Aeroport>();
 		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM aeroport WHERE leDepartement = ? ")){
 			ResultSet rs = st.executeQuery();
 			while(rs.next()){
-				// result.add(new Aeroport());
+				result.add(new Aeroport(rs.getString("nom"),rs.getString("adresse")));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class DepartementDAO extends DAO<Departement> {
 		}
 		return result;
 	}
-	public ArrayList<Aeroport> aeroports(int id){
-		return aeroports(String.valueOf(id));
+	public ArrayList<Aeroport> listeAeroport(int id){
+		return listeAeroport(String.valueOf(id));
 	}
 }
