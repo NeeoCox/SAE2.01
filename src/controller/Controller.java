@@ -81,7 +81,7 @@ public class Controller {
 
 
 	public void recherche(ActionEvent e){
-		
+		if(tableauAdmin != null){
 		System.out.println("recherche");
 		clear(tableauAdmin);
 		String[] header = {"Ann\u00e9e","id Commune","id Departement","Nom","Population","Transport","Budget","Taux d'inflation","Nb maison","Nb Appart","prix moyen","prix m2 moyen","surface moyenne","depense culturelle"};
@@ -123,6 +123,7 @@ public class Controller {
 			}
 
 		}
+	}
 	}
 
 	public void modifier(ActionEvent ev) {
