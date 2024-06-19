@@ -74,6 +74,17 @@ public class GareDAO extends DAO<Gare> {
 		return result;
 	}
 
+	public int delete(Commune commune){
+		int result = -1;
+		String query = "DELETE FROM gare WHERE laCommune ='"+commune.getIdCommune()+"'";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(query);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 
 	public ArrayList<Gare> gare(String id){
 		ArrayList<Gare> result = new ArrayList<Gare>();

@@ -9,10 +9,11 @@ import java.util.List;
 
 import model.data.Commune;
 import model.data.Departement;
-import model.data.Gare;
+import model.dao.GareDAO;
 
 
 public class CommuneDAO extends DAO<Commune> {
+	private GareDAO _g = new GareDAO();
 
 	public List<Commune> findAll(){
 		ArrayList<Commune> result = new ArrayList<Commune>();
@@ -52,7 +53,7 @@ public class CommuneDAO extends DAO<Commune> {
 		return getDepartement(String.valueOf(idCommune));
 	}
 
-	public ArrayList<Integer> setAnnee(String id){
+	public ArrayList<Integer> getAnnee(String id){
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		try(Connection connect = createConnection(); PreparedStatement st = connect.prepareStatement("SELECT * FROM donneesannuelles WHERE laCommune= ? ")){
 			st.setString(1, id);
@@ -61,14 +62,15 @@ public class CommuneDAO extends DAO<Commune> {
 				result.add(rs.getInt("lAnnee"));
 			}
 		}catch(SQLException e){
-
+			e.printStackTrace();
 		}
 		return result;
 	}
 
-	public ArrayList<Integer> setAnnee(int id){
-		return setAnnee(String.valueOf(id));
+	public ArrayList<Integer> getAnnee(int id){
+		return getAnnee(String.valueOf(id));
 	}
+
 
 	public ArrayList<Commune> voisine(String id){
 		ArrayList<Commune> result = new ArrayList<Commune>();
@@ -83,8 +85,8 @@ public class CommuneDAO extends DAO<Commune> {
 		}
 		return result;
 	}
-	public ArrayList<Integer> voisine(int id){
-		return setAnnee(String.valueOf(id));
+	public ArrayList<Commune> voisine(int id){
+		return voisine(String.valueOf(id));
 	}
 	
 	public int create(Commune commune, Departement departement) {
@@ -102,10 +104,6 @@ public class CommuneDAO extends DAO<Commune> {
 			result = psCommune.executeUpdate();
 	
 			// Get the generated ID if needed
-			ResultSet generatedKeys = psCommune.getGeneratedKeys();
-			if (generatedKeys.next()) {
-				commune.setIdCommune(generatedKeys.getInt(1));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -188,22 +186,27 @@ public class CommuneDAO extends DAO<Commune> {
 
 	public int delete(Commune commune){
 		int result = -1;
-		String queryDA = "DELETE FROM donneesannuelles WHERE idCommune ='"+commune.getIdCommune()+"'";
+		_g.delete(commune);
+		String queryV = "DELETE FROM voisinage WHERE commune ='"+commune.getIdCommune()+"'";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(queryV);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		String queryV2 = "DELETE FROM voisinage WHERE communeVoisine ='"+commune.getIdCommune()+"'";
+		try(Connection connect = createConnection();Statement st = connect.createStatement()){
+			result = st.executeUpdate(queryV2);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		String queryDA = "DELETE FROM donneesannuelles WHERE laCommune ='"+commune.getIdCommune()+"' AND lAnnee='"+commune.getAnnee()+"'";
 		try(Connection connect = createConnection();Statement st = connect.createStatement()){
 			result = st.executeUpdate(queryDA);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		String query = "DELETE FROM commune WHERE idCommune ='"+commune.getIdCommune()+"'";
-		try(Connection connect = createConnection();Statement st = connect.createStatement()){
-			result = st.executeUpdate(query);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-
-
-
-
 		return result;
 	}
 	

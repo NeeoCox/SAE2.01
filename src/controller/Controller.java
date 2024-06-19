@@ -63,7 +63,7 @@ public class Controller {
 		this.perm = -1;
 		_c = new CommuneDAO();
 		_g = new GareDAO();
-		modificationEnCours = true;
+		modificationEnCours = false;
 		tableauA = new ArrayList<TextField>();
 		buttonDel = new ArrayList<Button>();
 	}
@@ -126,8 +126,9 @@ public class Controller {
 	public void modifier(ActionEvent ev) {
         System.out.println("modifier : " + this.modificationEnCours);
 
-		if (modificationEnCours) {
-			for (int i = 0; i < tableauA.size(); i += 15) {
+		System.out.println("taille tableauA " +tableauA.size());
+		if (!modificationEnCours) {
+			for (int i = 0; i < tableauA.size(); i += 14) {
 				System.out.println("for tableaA");
            
                 boolean filled = true;
@@ -135,8 +136,8 @@ public class Controller {
                     if (tableauA.get(j).getText().equals("")) filled = false;
                 }
                 if (filled) {
-					System.out.println("i="+i+" i ==" +(i == tableauA.size() - 15));
-                    if (i == tableauA.size() - 15) {
+					System.out.println("i="+i+" i ==" +(i == tableauA.size() - 14));
+                    if (i == tableauA.size() - 14) {
 						Commune c = this.createNewFullCommune(i);
 						Departement d = new Departement(i);
                         System.out.println("create"+c.getIdCommune());
@@ -163,13 +164,12 @@ public class Controller {
             });
         }
 
-        tableauA.clear();
-		try{
-			this.recherche(ev);
-			this.modificationEnCours = !this.modificationEnCours;
-		}catch(IllegalArgumentException e){
-			e.printStackTrace();
-		}
+		if (!modificationEnCours) 
+        	tableauA.clear();
+		this.recherche(ev);
+		System.out.println("modieifation qui change ete :" + this.modificationEnCours);
+		this.modificationEnCours = !this.modificationEnCours;
+		System.out.println("maintenatn :" + this.modificationEnCours);
         
         
     }
@@ -181,12 +181,13 @@ public class Controller {
 		int[] integer = new int[integeri.length];
 		float[] floats = new float[floatsi.length];
 		for (int j = 0; j < integer.length;j++) {
+			System.out.println("internet : "+tableauA.get(integeri[j]).getText());
 			integer[j] = Integer.parseInt(tableauA.get(integeri[j]).getText());
 		}
 		for (int j = 0; j < floats.length;j++) {
-			floats[j] = Integer.parseInt(tableauA.get(floatsi[j]).getText());
+			System.out.println("flaotes : "+tableauA.get(floatsi[j]).getText());
+			floats[j] = Float.parseFloat(tableauA.get(floatsi[j]).getText());
 		}
-		
 
 		return new Commune(integer[1], nom, integer[0], floats[1], integer[3], integer[4], floats[4], floats[3], floats[5], floats[1], floats[0], integer[3]);
 	}
@@ -194,21 +195,27 @@ public class Controller {
 	private void addDataRow(GridPane tab, boolean header, String[] info) {
 		int rowIndex = tab.getRowCount();
 	
-		if (this.modificationEnCours && !header) {
+		if (!this.modificationEnCours && !header) {
 			for (int i = 0; i < info.length; i++) {
 				TextField t = new TextField(info[i]);
 				tableauA.add(t);
 				tab.add(t, i, rowIndex);
 			}
 	
-			if (info.length > 0 && info[0].isEmpty()) { // Check if it's the last empty row for adding a new commune
+			if (info.length > 0 && info[0].isEmpty()) {
 				Button addButton = new Button("Add");
 				addButton.setOnAction(event -> addNewCommune());
 				tab.add(addButton, 14, rowIndex);
 			} else {
 				Button b = new Button("Delete");
-				tab.add(b, 14, rowIndex);
-				buttonDel.add(b);
+                b.setOnAction(event -> {
+                    int index = (rowIndex - 1) * 14; // Calculate the correct index based on rowIndex
+                    Commune communeToDelete = createNewFullCommune(index);
+                    _c.delete(communeToDelete);
+                    recherche(new ActionEvent()); // Refresh the grid
+                });
+                tab.add(b, 14, rowIndex);
+                buttonDel.add(b);
 			}
 		} else {
 			buttonDel.clear();
@@ -219,6 +226,9 @@ public class Controller {
 		}
 	}
 
+	private void removeCommune(){
+			
+	}
 	
 	private void addNewCommune() {
 		int rowIndex = tableauA.size() / 14 - 1; // Calculate the index of the last row
