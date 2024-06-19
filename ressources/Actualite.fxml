@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <top>
+      <ToolBar prefHeight="75.0" prefWidth="798.0">
+         <items>
+            <StackPane prefHeight="3.0" prefWidth="93.0">
+               <children>
+<<<<<<< HEAD
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" text="Menu">
+=======
+                  <MenuButton fx:id="menuButton" alignment="CENTER" mnemonicParsing="false" prefHeight="87.0" prefWidth="93.0" text="Menu">
+>>>>>>> 265b6c88ffb381d2cd660959b92990caac081c46
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <items>
+                        <MenuItem onAction="#versPageAccueil" mnemonicParsing="false" text="Accueil" />
+                        <MenuItem onAction="#versPageContact" mnemonicParsing="false" text="Contact" />
+                     </items>
+                  </MenuButton>
+               </children>
+            </StackPane>
+<<<<<<< HEAD
+=======
+            <Button fx:id="exporter" mnemonicParsing="false" onAction="#export" prefHeight="34.0" prefWidth="85.0" text="exporter" />
+>>>>>>> 265b6c88ffb381d2cd660959b92990caac081c46
+            <TextField fx:id="villeAChercher" prefHeight="34.0" prefWidth="386.0" promptText="Ville a rechercher" />
+            <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" prefWidth="68.0" text="recherche" />
+            <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" prefWidth="73.0" text="Connexion" />
+         </items>
+      </ToolBar>
+   </top>
+</BorderPane>

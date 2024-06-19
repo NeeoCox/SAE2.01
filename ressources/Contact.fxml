@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <top>
+      <ToolBar prefHeight="75.0" prefWidth="798.0">
+         <items>
+            <HBox alignment="CENTER" spacing="10" HBox.hgrow="ALWAYS">
+               <children>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" text="Menu">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <items>
+<<<<<<< HEAD
+                        <MenuItem onAction="#versPageLogin" mnemonicParsing="false" text="Accueil" />
+                        <MenuItem onAction="#versPageActu" mnemonicParsing="false" text="Actualités" />
+                     </items>
+                  </MenuButton>
+=======
+                        <MenuItem onAction="#versPageAccueil" mnemonicParsing="false" text="Accueil" />
+                        <MenuItem onAction="#versPageActu" mnemonicParsing="false" text="Actualités" />
+                     </items>
+                  </MenuButton>
+                  <Button fx:id="exporter" mnemonicParsing="false" onAction="#export" prefHeight="34.0" text="Exporter" />
+>>>>>>> 265b6c88ffb381d2cd660959b92990caac081c46
+                  <TextField fx:id="villeAChercher" prefHeight="34.0" promptText="Ville à rechercher" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" prefHeight="34.0" text="Recherche" />
+                  <Button fx:id="connexion" mnemonicParsing="false" onAction="#versPageLogin" prefHeight="34.0" text="Connexion" />
+               </children>
+            </HBox>
+         </items>
+      </ToolBar>
+   </top>
+   <left>
+      <GridPane prefHeight="374.0" prefWidth="218.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="10.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="195.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="128.0" minHeight="5.0" prefHeight="77.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="149.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="127.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="73.0" prefWidth="202.0" GridPane.columnIndex="1">
+               <children>
+                  <Label alignment="CENTER" layoutY="6.0" prefHeight="29.0" prefWidth="82.0" text="Nom" />
+                  <TextField layoutY="35.0" prefHeight="25.0" prefWidth="202.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="27.0" layoutY="10.0" prefHeight="72.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="CENTER" layoutY="6.0" prefHeight="29.0" prefWidth="82.0" text="Prénom" />
+                  <TextField layoutY="35.0" prefHeight="25.0" prefWidth="202.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="27.0" layoutY="75.0" prefHeight="83.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label alignment="CENTER" layoutY="6.0" prefHeight="29.0" prefWidth="82.0" text="Email" />
+                  <TextField layoutY="35.0" prefHeight="25.0" prefWidth="202.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="27.0" layoutY="159.0" prefHeight="83.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label alignment="CENTER" layoutY="6.0" prefHeight="29.0" prefWidth="82.0" text="Sujet" />
+                  <TextField layoutY="35.0" prefHeight="25.0" prefWidth="202.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </left>
+   <center>
+      <GridPane prefHeight="374.0" prefWidth="573.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="33.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="557.0" minWidth="10.0" prefWidth="519.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="557.0" minWidth="10.0" prefWidth="33.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="328.0" minHeight="10.0" prefHeight="257.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="328.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Button layoutX="423.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Envoyer" />
+               </children>
+            </AnchorPane>
+            <Label alignment="CENTER" prefHeight="29.0" prefWidth="82.0" text="Contenu" GridPane.columnIndex="1" />
+            <TextArea prefHeight="272.0" prefWidth="517.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
